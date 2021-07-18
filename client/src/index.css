@@ -31,5 +31,8 @@ body {
 
 .primary {
     background: var(--primary-BG);
-    color: rgba(255, 255, 255, 0.95);
+}
+
+.text-primary {
+    color: var(--white);
 }
