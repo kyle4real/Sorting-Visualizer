@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-const Button = styled.button`
+.button {
     padding: 0.5rem 1.5rem;
     font: inherit;
     background: #1dc690;
@@ -15,6 +13,4 @@ const Button = styled.button`
     &:active {
         background: rgba(29, 198, 144, 0.7);
     }
-`;
-
-export default Button;
+}

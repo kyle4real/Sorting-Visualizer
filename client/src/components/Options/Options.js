@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../UI/Button";
+import Button from "../UI/Button/Button";
 import styles from "./Options.module.css";
 
 const Options = () => {
