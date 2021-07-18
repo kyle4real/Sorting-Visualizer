@@ -7,4 +7,11 @@
 
 .header {
     height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 1.6rem;
+    text-transform: lowercase;
 }
