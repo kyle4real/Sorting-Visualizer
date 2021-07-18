@@ -1,13 +1,35 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* color palette: https://www.canva.com/colors/color-palettes/northern-lights-3/ */
+
+:root {
+    --primary-BG: #278ab0;
+    --secondary-BG: #1c4670;
+    --info-BG: #1dc690;
+    --white: #eaeae0;
+}
+
+.container {
+    padding: 0 1.5rem;
+    max-width: calc(100% - 3rem);
+    margin: 0 auto;
+    background: transparent;
+}
+
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: calc(1440px - 3rem);
+    }
+}
+
+.primary {
+    background: var(--primary-BG);
+    color: rgba(255, 255, 255, 0.95);
 }
