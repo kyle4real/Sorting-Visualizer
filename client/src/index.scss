@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Roboto+Mono:wght@400;500&display=swap");
+@import "./variables.scss";
 
 * {
     box-sizing: border-box;
@@ -9,32 +10,25 @@ body {
     /* font-family: "Poppins", sans-serif; */
 }
 
-/* color palette: https://www.canva.com/colors/color-palettes/northern-lights-3/ */
-
-:root {
-    --primary-BG: #278ab0;
-    --secondary-BG: #1c4670;
-    --info-BG: #1dc690;
-    --white: #eaeae0;
-}
-
 .container {
     padding: 0 1.5rem;
     max-width: calc(100% - 3rem);
     margin: 0 auto;
     background: transparent;
-}
 
-@media screen and (min-width: 1440px) {
-    .container {
+    @media screen and (min-width: 1440px) {
         max-width: calc(1440px - 3rem);
     }
 }
 
 .primary {
-    background: var(--primary-BG);
+    background: $primary;
+}
+
+.secondary {
+    background: $secondary;
 }
 
 .text-primary {
-    color: var(--white);
+    color: $white;
 }
