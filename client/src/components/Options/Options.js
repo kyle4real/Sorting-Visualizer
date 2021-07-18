@@ -7,6 +7,8 @@ const Options = () => {
         <div className={styles["options-container"]}>
             <div className={`container ${styles["options"]}`}>
                 <Button>Bubble Sort</Button>
+                <Button>Selection Sort</Button>
+                <Button>Insertion Sort</Button>
             </div>
         </div>
     );

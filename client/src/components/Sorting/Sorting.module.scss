@@ -1,0 +1,14 @@
+@import "../../styles/variables.scss";
+
+$containerHeight: calc(100vh - 7rem);
+
+.sorting-container {
+    height: $containerHeight;
+    background: $white;
+}
+
+.sorting {
+    height: 100%;
+    border-left: 3px solid desaturate($primary, 20%);
+    border-right: 3px solid desaturate($primary, 20%);
+}

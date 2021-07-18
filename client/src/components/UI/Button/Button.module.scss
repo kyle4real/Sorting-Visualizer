@@ -1,10 +1,10 @@
 @import "../../../styles/variables.scss";
 
 $buttonBG: $white;
-$buttonColor: desaturate($primary, 60%);
+$buttonColor: $secondary;
 
 .button {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 0;
     font: inherit;
     background: $buttonBG;
     border: 1px solid $buttonBG;
@@ -14,14 +14,16 @@ $buttonColor: desaturate($primary, 60%);
     transition: background 0.3s ease;
     color: $buttonColor;
     font-weight: 500;
+    min-width: 175px;
 
     &:active {
-        border: none;
+        border-color: transparent;
+        font-size: 0.99rem;
     }
 
     &:hover,
     &:active {
         background: rgba($buttonBG, 0.75);
-        color: desaturate($primary, 90%);
+        color: $secondary;
     }
 }
