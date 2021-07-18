@@ -1,5 +1,8 @@
+@import "../../styles/variables.scss";
+
 .options-container {
-    height: 2.5rem;
+    height: 3rem;
+    background: desaturate($primary, 20%);
 }
 
 .options {
