@@ -21,7 +21,7 @@ const SetupProgress = () => {
                 <p>
                     1) choose sort.<button onClick={handleChooseSort}>c</button>
                 </p>
-                <p>(not ready.)</p>
+                <p>{chooseData && chooseSort ? `ready.` : `(not ready.)`}</p>
                 <p>
                     2) choose data.<button onClick={handleChooseData}>c</button>
                 </p>
