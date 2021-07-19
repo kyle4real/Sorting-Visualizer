@@ -5,7 +5,6 @@ const max = 100;
 
 const Bar = ({ height }) => {
     height = Math.round((height / max) * 100) + "%";
-    console.log(height);
 
     return <div className={styles.bar} style={{ height: height }}></div>;
 };

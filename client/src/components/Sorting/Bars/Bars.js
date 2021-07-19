@@ -4,13 +4,13 @@ import styles from "./Bars.module.scss";
 
 const data = [
     { id: 1, height: 50 },
-    { id: 1, height: 24 },
-    { id: 1, height: 87 },
-    { id: 1, height: 92 },
-    { id: 1, height: 37 },
-    { id: 1, height: 3 },
-    { id: 1, height: 13 },
-    { id: 1, height: 69 },
+    { id: 2, height: 24 },
+    { id: 3, height: 87 },
+    { id: 4, height: 92 },
+    { id: 5, height: 37 },
+    { id: 6, height: 3 },
+    { id: 7, height: 13 },
+    { id: 8, height: 69 },
 ];
 
 const Bars = () => {
