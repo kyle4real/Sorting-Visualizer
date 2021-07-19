@@ -1,6 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .bars-container {
+    display: flex;
     width: 100%;
     height: fill;
     margin-top: 3rem;
@@ -8,4 +9,12 @@
     background: white;
     border-radius: 4px;
     box-shadow: inset 0px 0px 8px 1px rgba($secondary, 0.3);
+    padding: 3rem;
+}
+
+.bars {
+    width: 100%;
+    border-bottom: 2px solid $primary;
+    display: grid;
+    column-gap: 0.5rem;
 }
