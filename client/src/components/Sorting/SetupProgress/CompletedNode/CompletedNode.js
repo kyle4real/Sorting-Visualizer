@@ -11,7 +11,6 @@ const CompletedNode = () => {
     return (
         <>
             <div className={`${styles["completed-node"]} ${full && styles.full}`}></div>
-            <button onClick={handleClick}>n</button>
         </>
     );
 };
