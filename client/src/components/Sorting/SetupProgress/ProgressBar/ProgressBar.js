@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styles from "./ProgressBar.module.scss";
 
 const ProgressBar = ({ fillRight, fillLeft, full }) => {
-    // const [fill, setFill] = useState(fillRight ? false : true);
-
     return (
         <>
             {fillRight && (

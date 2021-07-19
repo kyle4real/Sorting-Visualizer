@@ -14,6 +14,10 @@
     background: $secondary;
 }
 
+.mid.full {
+    background: $primary;
+}
+
 .completed-node::after {
     content: "";
     width: calc($completedNodeSize + 2px);
