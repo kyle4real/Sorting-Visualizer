@@ -13,15 +13,28 @@ const Options = ({ setSortSelection, sortSelection }) => {
     return (
         <div className={styles["options-container"]}>
             <div className={`container ${styles["options"]}`}>
-                <Button handleClick={handleClick} isActive={sortSelection === "Bubble Sort"}>
-                    Bubble Sort
-                </Button>
-                <Button handleClick={handleClick} isActive={sortSelection === "Selection Sort"}>
-                    Selection Sort
-                </Button>
-                <Button handleClick={handleClick} isActive={sortSelection === "Insertion Sort"}>
-                    Insertion Sort
-                </Button>
+                <div className={styles["options__sort"]}>
+                    <Button handleClick={handleClick} isActive={sortSelection === "Bubble Sort"}>
+                        Bubble Sort
+                    </Button>
+                    <Button handleClick={handleClick} isActive={sortSelection === "Selection Sort"}>
+                        Selection Sort
+                    </Button>
+                    <Button handleClick={handleClick} isActive={sortSelection === "Insertion Sort"}>
+                        Insertion Sort
+                    </Button>
+                </div>
+                <div className={styles["options__data"]}>
+                    <Button>Random</Button>
+                    <Button>Nearly Sorted</Button>
+                    <div className={styles["selection-container"]}>
+                        <select className={styles["selection"]}>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     );
