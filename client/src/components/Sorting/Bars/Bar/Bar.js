@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "./Bar.module.scss";
 
-const Bar = () => {
-    return <div className={styles.bar}></div>;
+const max = 100;
+
+const Bar = ({ height }) => {
+    height = Math.round((height / max) * 100) + "%";
+    console.log(height);
+
+    return <div className={styles.bar} style={{ height: height }}></div>;
 };
 
 export default Bar;

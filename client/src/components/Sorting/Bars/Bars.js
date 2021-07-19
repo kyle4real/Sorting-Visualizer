@@ -20,8 +20,8 @@ const Bars = () => {
                 className={styles["bars"]}
                 style={{ gridTemplateColumns: `repeat(${data.length}, 1fr)` }}
             >
-                {data.map((dataPoint) => (
-                    <Bar key={dataPoint.id} />
+                {data.map(({ id, height }) => (
+                    <Bar key={id} height={height} />
                 ))}
             </div>
         </div>
