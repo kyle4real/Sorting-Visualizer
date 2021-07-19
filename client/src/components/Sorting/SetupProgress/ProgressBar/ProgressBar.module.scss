@@ -13,7 +13,11 @@
     &__fill {
         width: 0;
         height: 100%;
-        background: $primary;
-        max-width: 800px;
+        background: linear-gradient(90deg, $secondary, $primary);
+        transition: width 0.75s ease-out;
+    }
+
+    .grow {
+        width: 100%;
     }
 }
