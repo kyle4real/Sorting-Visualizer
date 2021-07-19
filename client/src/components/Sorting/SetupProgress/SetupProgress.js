@@ -12,24 +12,12 @@ const SetupProgress = ({ sortSelection }) => {
         else setChooseSort(true);
     }, [sortSelection]);
 
-    const handleChooseSort = () => {
-        setChooseSort((p) => !p);
-    };
-
-    const handleChooseData = () => {
-        setChooseData((p) => !p);
-    };
-
     return (
         <div className={styles["setupProgress-container"]}>
             <div className={styles["progress-titles"]}>
-                <p>
-                    1) choose sort.<button onClick={handleChooseSort}>c</button>
-                </p>
+                <p>1) choose sort.</p>
                 <p>{chooseData && chooseSort ? `ready.` : `(not ready.)`}</p>
-                <p>
-                    2) choose data.<button onClick={handleChooseData}>c</button>
-                </p>
+                <p>2) choose data.</p>
             </div>
 
             <div className={styles["setupProgress"]}>
