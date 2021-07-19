@@ -2,7 +2,7 @@
 
 .options-container {
     height: 3rem;
-    background: desaturate($primary, 20%);
+    background: $primaryDesaturated;
 }
 
 .options {
