@@ -1,0 +1,9 @@
+@import "../../../../styles/variables.scss";
+
+.progress-bar {
+    flex: 1;
+    height: 1rem;
+    background: white;
+    border-top: 1px solid $primary;
+    border-bottom: 1px solid $primary;
+}
