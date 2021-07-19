@@ -1,13 +1,24 @@
 .setupProgress-container {
-    height: 2rem;
+    height: 4rem;
     width: 100%;
     margin: 1.5rem 0;
 }
 
-.setupProgress {
+.setupProgress,
+.progress-titles {
     padding: 0 6rem;
     width: 100%;
-    height: 100%;
+    height: 3rem;
     display: flex;
     align-items: center;
+}
+
+.progress-titles {
+    padding: 0 4rem;
+    height: 1rem;
+    justify-content: space-between;
+}
+
+.progress-titles p {
+    font-size: 0.9rem;
 }
