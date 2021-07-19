@@ -7,12 +7,13 @@
     background: $white;
     box-shadow: inset 0px 0px 4px 2px rgba($secondary, 0.3);
     position: relative;
-    transition: background 0.3s ease;
+    transition: background 1s ease;
 }
 
 .full {
-    background: $primary;
+    background: $secondary;
 }
+
 .completed-node::after {
     content: "";
     width: calc($completedNodeSize + 2px);

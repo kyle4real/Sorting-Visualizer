@@ -28,11 +28,11 @@ const SetupProgress = () => {
             </div>
 
             <div className={styles["setupProgress"]}>
-                <CompletedNode />
+                <CompletedNode full={chooseSort} />
                 <ProgressBar fillRight full={chooseSort} />
-                <CompletedNode />
+                <CompletedNode full={chooseSort && chooseData} />
                 <ProgressBar fillLeft full={chooseData} />
-                <CompletedNode />
+                <CompletedNode full={chooseData} />
             </div>
         </div>
     );
