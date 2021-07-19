@@ -13,9 +13,9 @@ const SetupProgress = () => {
             </div>
             <div className={styles["setupProgress"]}>
                 <CompletedNode />
-                <ProgressBar />
+                <ProgressBar fillRight />
                 <CompletedNode />
-                <ProgressBar />
+                <ProgressBar fillLeft />
                 <CompletedNode />
             </div>
         </div>

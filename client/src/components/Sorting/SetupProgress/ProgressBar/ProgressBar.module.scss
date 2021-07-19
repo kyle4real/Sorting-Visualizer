@@ -1,23 +1,33 @@
 @import "../../../../styles/variables.scss";
 
-.progress-bar {
+.progress-bar-right,
+.progress-bar-left {
     flex: 1;
     height: 0.5rem;
-    background: white;
-    // box-shadow: inset 0px 0px 1px 1px rgba($secondary, 0.3);
-    // border-top: 1px solid $primary;
-    // border-bottom: 1px solid $primary;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     position: relative;
 
     &__fill {
+        transition: width 0.75s ease;
         width: 0;
         height: 100%;
-        background: linear-gradient(90deg, $secondary, $primary);
-        transition: width 0.75s ease-out;
     }
 
-    .grow {
+    .fill {
         width: 100%;
+    }
+}
+
+.progress-bar-right {
+    background: white;
+    &__fill {
+        background: linear-gradient(90deg, $secondary, $primary);
+    }
+}
+
+.progress-bar-left {
+    background: linear-gradient(90deg, $primary, $secondary);
+    &__fill {
+        background: white;
     }
 }

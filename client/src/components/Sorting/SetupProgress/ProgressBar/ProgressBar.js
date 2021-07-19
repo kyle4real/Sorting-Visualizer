@@ -1,19 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./ProgressBar.module.scss";
 
-const ProgressBar = () => {
-    const [animate, setAnimate] = useState(false);
+const ProgressBar = ({ fillRight, fillLeft }) => {
+    const [fill, setFill] = useState(fillRight ? false : true);
 
     const handleClick = () => {
-        setAnimate(!animate);
+        setFill((p) => !p);
     };
 
     return (
         <>
-            <div className={styles["progress-bar"]}>
-                <div className={`${styles["progress-bar__fill"]} ${animate && styles.grow}`}></div>
-                <button onClick={handleClick}>c</button>
-            </div>
+            {fillRight && (
+                <div className={styles["progress-bar-right"]}>
+                    <div
+                        className={`${styles["progress-bar-right__fill"]} ${fill && styles.fill}`}
+                    ></div>
+                    <button onClick={handleClick}>c</button>
+                </div>
+            )}
+            {fillLeft && (
+                <div className={styles["progress-bar-left"]}>
+                    <div
+                        className={`${styles["progress-bar-left__fill"]} ${fill && styles.fill}`}
+                    ></div>
+                    <button onClick={handleClick}>c</button>
+                </div>
+            )}
         </>
     );
 };
