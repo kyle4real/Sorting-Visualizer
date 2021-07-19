@@ -3,7 +3,7 @@ import CompletedNode from "./CompletedNode/CompletedNode";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import styles from "./SetupProgress.module.scss";
 
-const SetupProgress = ({ sortSelection }) => {
+const SetupProgress = ({ sortSelection, dataSelection }) => {
     const [chooseSort, setChooseSort] = useState(false);
     const [chooseData, setChooseData] = useState(false);
 
@@ -11,6 +11,11 @@ const SetupProgress = ({ sortSelection }) => {
         if (sortSelection === null) setChooseSort(false);
         else setChooseSort(true);
     }, [sortSelection]);
+
+    useEffect(() => {
+        if (dataSelection === null) setChooseData(false);
+        else setChooseData(true);
+    }, [dataSelection]);
 
     return (
         <div className={styles["setupProgress-container"]}>

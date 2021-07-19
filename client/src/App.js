@@ -8,12 +8,18 @@ function App() {
     const [dataSelection, setDataSelection] = useState(null);
 
     console.log(sortSelection);
+    console.log(dataSelection);
 
     return (
         <div>
             <Header />
-            <Options setSortSelection={setSortSelection} sortSelection={sortSelection} />
-            <Sorting sortSelection={sortSelection} />
+            <Options
+                setSortSelection={setSortSelection}
+                sortSelection={sortSelection}
+                setDataSelection={setDataSelection}
+                dataSelection={dataSelection}
+            />
+            <Sorting sortSelection={sortSelection} dataSelection={dataSelection} />
         </div>
     );
 }

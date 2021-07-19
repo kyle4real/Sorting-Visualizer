@@ -14,11 +14,12 @@ $buttonColor: $secondary;
     transition: background 0.3s ease, color 0.3s ease;
     color: $buttonColor;
     font-weight: 500;
-    min-width: 160px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1px;
+    min-width: 145px;
 
     &:active {
         border-color: transparent;
-        font-size: 0.99rem;
     }
 
     &:hover,

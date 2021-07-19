@@ -3,11 +3,11 @@ import Bars from "./Bars/Bars";
 import SetupProgress from "./SetupProgress/SetupProgress";
 import styles from "./Sorting.module.scss";
 
-const Sorting = ({ sortSelection }) => {
+const Sorting = ({ sortSelection, dataSelection }) => {
     return (
         <div className={styles["sorting-container"]}>
             <div className={`container ${styles["sorting"]}`}>
-                <SetupProgress sortSelection={sortSelection} />
+                <SetupProgress sortSelection={sortSelection} dataSelection={dataSelection} />
                 <Bars />
             </div>
         </div>
