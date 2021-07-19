@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CompletedNode from "./CompletedNode/CompletedNode";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import styles from "./SetupProgress.module.scss";
 
-const SetupProgress = () => {
+const SetupProgress = ({ sortSelection }) => {
     const [chooseSort, setChooseSort] = useState(false);
     const [chooseData, setChooseData] = useState(false);
+
+    useEffect(() => {
+        if (sortSelection === null) setChooseSort(false);
+        else setChooseSort(true);
+    }, [sortSelection]);
 
     const handleChooseSort = () => {
         setChooseSort((p) => !p);

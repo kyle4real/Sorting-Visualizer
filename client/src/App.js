@@ -13,7 +13,7 @@ function App() {
         <div>
             <Header />
             <Options setSortSelection={setSortSelection} sortSelection={sortSelection} />
-            <Sorting />
+            <Sorting sortSelection={sortSelection} />
         </div>
     );
 }
