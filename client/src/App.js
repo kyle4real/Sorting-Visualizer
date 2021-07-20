@@ -6,9 +6,11 @@ import Sorting from "./components/Sorting/Sorting";
 function App() {
     const [sortSelection, setSortSelection] = useState(null);
     const [dataSelection, setDataSelection] = useState(null);
+    const [dataAmount, setDataAmount] = useState(50);
 
     console.log(sortSelection);
     console.log(dataSelection);
+    console.log(dataAmount);
 
     return (
         <div>
@@ -18,8 +20,14 @@ function App() {
                 sortSelection={sortSelection}
                 setDataSelection={setDataSelection}
                 dataSelection={dataSelection}
+                setDataAmount={setDataAmount}
+                dataAmount={dataAmount}
             />
-            <Sorting sortSelection={sortSelection} dataSelection={dataSelection} />
+            <Sorting
+                sortSelection={sortSelection}
+                dataSelection={dataSelection}
+                dataAmount={dataAmount}
+            />
         </div>
     );
 }

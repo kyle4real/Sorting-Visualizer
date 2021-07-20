@@ -2,7 +2,14 @@ import React from "react";
 import Button from "../UI/Button/Button";
 import styles from "./Options.module.scss";
 
-const Options = ({ setSortSelection, sortSelection, setDataSelection, dataSelection }) => {
+const Options = ({
+    setSortSelection,
+    sortSelection,
+    setDataSelection,
+    dataSelection,
+    setDataAmount,
+    dataAmount,
+}) => {
     const handleSortClick = (e) => {
         const selection = e.target.textContent;
         setSortSelection((p) => {
@@ -16,6 +23,11 @@ const Options = ({ setSortSelection, sortSelection, setDataSelection, dataSelect
             if (p === selection) return null;
             return selection;
         });
+    };
+
+    const handleAmountChange = (e) => {
+        const selection = e.target.value;
+        setDataAmount(+selection);
     };
 
     return (
@@ -52,7 +64,11 @@ const Options = ({ setSortSelection, sortSelection, setDataSelection, dataSelect
                         Nearly Sorted
                     </Button>
                     <div className={styles["selection-container"]}>
-                        <select className={styles["selection"]}>
+                        <select
+                            className={styles["selection"]}
+                            onChange={handleAmountChange}
+                            value={dataAmount}
+                        >
                             <option value="50">50</option>
                             <option value="100">100</option>
                             <option value="200">200</option>

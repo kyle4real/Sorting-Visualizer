@@ -18,7 +18,7 @@ const num = 200;
 const data = [];
 for (let i = 0; i < num; i++) {
     const newObj = {
-        id: Math.round(Math.random() * 1000),
+        id: Math.round(Math.random() * 1000000),
         height: Math.round(Math.random() * limit),
     };
     data.push(newObj);
