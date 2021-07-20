@@ -42,12 +42,12 @@ const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
 
             for (let i = 0; i < animations.length; i++) {
                 const dataBars = document.getElementsByClassName("data-bar");
-                const colorChange = i % 3 !== 2;
+                const colorChange = i % 3 !== 1;
                 if (colorChange) {
                     const [barOneInx, barTwoInx] = animations[i];
                     const barOneStyling = dataBars[barOneInx].style;
                     const barTwoStyling = dataBars[barTwoInx].style;
-                    const color = i % 2 === 0 ? "#1dc690" : "#278ab0";
+                    const color = i % 3 === 0 ? "#1dc690" : "#278ab0";
                     setTimeout(() => {
                         barOneStyling.backgroundColor = color;
                         barTwoStyling.backgroundColor = color;
