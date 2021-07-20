@@ -8,9 +8,9 @@ function App() {
     const [dataSelection, setDataSelection] = useState(null);
     const [dataAmount, setDataAmount] = useState(50);
 
-    console.log(sortSelection);
-    console.log(dataSelection);
-    console.log(dataAmount);
+    // console.log(sortSelection);
+    // console.log(dataSelection);
+    // console.log(dataAmount);
 
     return (
         <div>

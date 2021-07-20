@@ -40,6 +40,11 @@ $buttonColor: $secondary;
     background: white;
     min-width: 100px;
     border: white;
+
+    &:hover {
+        background: rgba(white, 0.7);
+        color: $primary;
+    }
 }
 
 .controls-right {
@@ -47,4 +52,9 @@ $buttonColor: $secondary;
     background: white;
     min-width: 45px;
     border: white;
+
+    &:hover {
+        background: rgba(white, 0.7);
+        color: $primary;
+    }
 }

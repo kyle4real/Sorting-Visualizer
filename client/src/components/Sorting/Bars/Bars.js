@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Bar from "./Bar/Bar";
 import styles from "./Bars.module.scss";
 
@@ -13,25 +13,32 @@ import styles from "./Bars.module.scss";
 //     { id: 8, height: 69 },
 // ];
 
-const limit = 100;
-const num = 200;
-const data = [];
-for (let i = 0; i < num; i++) {
-    const newObj = {
-        id: Math.round(Math.random() * 1000000),
-        height: Math.round(Math.random() * limit),
-    };
-    data.push(newObj);
-}
+const newSet = (dataAmount = 50) => {
+    const data = [];
+    for (let i = 0; i < dataAmount; i++) {
+        const newObj = {
+            id: Math.round(Math.random() * 1000000),
+            height: Math.round(Math.random() * 100) + 1,
+        };
+        data.push(newObj);
+    }
+    return data;
+};
 
-const Bars = () => {
+const Bars = ({ dataAmount }) => {
+    const [dataSet, setDataSet] = useState(newSet);
+
+    useEffect(() => {
+        setDataSet(() => newSet(dataAmount));
+    }, [dataAmount]);
+
     return (
         <div className={styles["bars-container"]}>
             <div
                 className={styles["bars"]}
-                style={{ gridTemplateColumns: `repeat(${data.length}, 1fr)` }}
+                style={{ gridTemplateColumns: `repeat(${dataAmount.length}, 1fr)` }}
             >
-                {data.map(({ id, height }) => (
+                {dataSet.map(({ id, height }) => (
                     <Bar key={id} height={height} />
                 ))}
             </div>

@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .setupProgress-container {
     display: flex;
     flex-direction: column;
@@ -14,6 +16,7 @@
     height: 3rem;
     display: flex;
     align-items: center;
+    color: $secondary;
 }
 
 .progress-titles {
