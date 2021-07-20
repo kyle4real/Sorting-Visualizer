@@ -13,25 +13,7 @@ import styles from "./Bars.module.scss";
 //     { id: 8, height: 69 },
 // ];
 
-const newSet = (dataAmount = 50) => {
-    const data = [];
-    for (let i = 0; i < dataAmount; i++) {
-        const newObj = {
-            id: Math.round(Math.random() * 1000000),
-            height: Math.round(Math.random() * 100) + 1,
-        };
-        data.push(newObj);
-    }
-    return data;
-};
-
-const Bars = ({ dataAmount }) => {
-    const [dataSet, setDataSet] = useState(newSet);
-
-    useEffect(() => {
-        setDataSet(() => newSet(dataAmount));
-    }, [dataAmount]);
-
+const Bars = ({ dataSet, dataAmount }) => {
     return (
         <div className={styles["bars-container"]}>
             <div
