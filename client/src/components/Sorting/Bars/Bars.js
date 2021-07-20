@@ -19,39 +19,65 @@ import insertionSort from "../../../algorithms/insertionSort";
 //     { id: 8, height: 69 },
 // ];
 
+const MS_ANIMATION_SPEED = 20;
+
+const MAX_HEIGHT = 100;
+
 const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
-    const [currentSet, setCurrentSet] = useState(dataSet);
-    const [count, setCount] = useState(0);
+    // const [animations, setAnimations] = useState([]);
 
     useEffect(() => {
         if (sortingOn) {
+            let animations;
             if (sortSelection === "Bubble Sort") {
-                bubbleSort(currentSet, setCurrentSet, dataAmount);
+                animations = bubbleSort(dataSet, dataAmount);
             } else if (sortSelection === "Selection Sort") {
-                selectionSort(setCurrentSet);
+                selectionSort(dataSet);
             } else if (sortSelection === "Insertion Sort") {
-                insertionSort(setCurrentSet);
+                insertionSort(dataSet);
             } else {
                 console.log("error");
             }
+            console.log(animations);
+
+            for (let i = 0; i < animations.length; i++) {
+                const dataBars = document.getElementsByClassName("data-bar");
+                const colorChange = i % 3 !== 2;
+                if (colorChange) {
+                    const [barOneInx, barTwoInx] = animations[i];
+                    const barOneStyling = dataBars[barOneInx].style;
+                    const barTwoStyling = dataBars[barTwoInx].style;
+                    const color = i % 2 === 0 ? "#1dc690" : "#278ab0";
+                    setTimeout(() => {
+                        barOneStyling.backgroundColor = color;
+                        barTwoStyling.backgroundColor = color;
+                    }, i * MS_ANIMATION_SPEED);
+                } else {
+                    if (!animations[i].length) continue;
+                    const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = animations[i];
+                    const barOneStyling = dataBars[barOneInx].style;
+                    const barTwoStyling = dataBars[barTwoInx].style;
+                    setTimeout(() => {
+                        barOneStyling.height =
+                            Math.round((barTwoHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
+                        barTwoStyling.height =
+                            Math.round((barOneHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
+                    }, i * MS_ANIMATION_SPEED);
+                }
+            }
         }
-    }, [sortingOn, sortSelection]);
+    }, [sortingOn, sortSelection, dataSet, dataAmount]);
 
-    useEffect(() => {
-        setCurrentSet(dataSet);
-    }, [dataSet]);
-
-    // console.log(currentSet);
+    console.log(styles.$primary);
 
     return (
         <div className={styles["bars-container"]}>
-            <p>{count}</p>
             <div
                 className={styles["bars"]}
                 style={{ gridTemplateColumns: `repeat(${dataAmount.length}, 1fr)` }}
             >
-                {currentSet.map(({ id, height }) => (
-                    <Bar key={id} height={height} />
+                {dataSet.map(({ id, height, color }) => (
+                    <Bar key={id} height={height} color={color} />
                 ))}
             </div>
         </div>
