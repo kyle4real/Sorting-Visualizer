@@ -34,3 +34,17 @@ $buttonColor: $secondary;
         color: $white;
     }
 }
+
+.controls-left {
+    color: $secondary;
+    background: white;
+    min-width: 100px;
+    border: white;
+}
+
+.controls-right {
+    color: $secondary;
+    background: white;
+    min-width: 45px;
+    border: white;
+}
