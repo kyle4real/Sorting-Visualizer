@@ -21,11 +21,12 @@ import insertionSort from "../../../algorithms/insertionSort";
 
 const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
     const [currentSet, setCurrentSet] = useState(dataSet);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         if (sortingOn) {
             if (sortSelection === "Bubble Sort") {
-                bubbleSort(setCurrentSet);
+                bubbleSort(currentSet, setCurrentSet, dataAmount);
             } else if (sortSelection === "Selection Sort") {
                 selectionSort(setCurrentSet);
             } else if (sortSelection === "Insertion Sort") {
@@ -36,8 +37,15 @@ const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
         }
     }, [sortingOn, sortSelection]);
 
+    useEffect(() => {
+        setCurrentSet(dataSet);
+    }, [dataSet]);
+
+    // console.log(currentSet);
+
     return (
         <div className={styles["bars-container"]}>
+            <p>{count}</p>
             <div
                 className={styles["bars"]}
                 style={{ gridTemplateColumns: `repeat(${dataAmount.length}, 1fr)` }}

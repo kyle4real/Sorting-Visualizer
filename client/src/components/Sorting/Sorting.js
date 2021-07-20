@@ -9,7 +9,7 @@ const newSet = (dataAmount = 50) => {
     for (let i = 0; i < dataAmount; i++) {
         const newObj = {
             id: Math.round(Math.random() * 1000000),
-            height: Math.round(Math.random() * 100) + 1,
+            height: Math.round(Math.random() * (100 - 3 + 1) + 3),
         };
         data.push(newObj);
     }
