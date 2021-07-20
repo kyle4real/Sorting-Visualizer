@@ -3,7 +3,7 @@ import styles from "./Controls.module.scss";
 import PlayButton from "./PlayButton/PlayButton";
 import Button from "./../../UI/Button/Button";
 
-const Controls = ({ setDataSet, newSet, dataAmount }) => {
+const Controls = ({ setDataSet, newSet, dataAmount, setSortingOn, sortingOn }) => {
     const handleReset = () => {
         setDataSet(() => newSet(dataAmount));
     };
@@ -17,7 +17,7 @@ const Controls = ({ setDataSet, newSet, dataAmount }) => {
                         reset.
                     </Button>
                 </div>
-                <PlayButton isPlaying={false} />
+                <PlayButton setSortingOn={setSortingOn} sortingOn={sortingOn} />
                 <div className={styles["btns"]}>
                     <div className={styles["btns-2"]}>
                         <Button className={"controls-right"}>{"<"}</Button>

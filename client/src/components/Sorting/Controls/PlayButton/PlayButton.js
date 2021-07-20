@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import styles from "./PlayButton.module.scss";
 import { FaPlay, FaPause } from "react-icons/fa";
 
-const PlayButton = () => {
-    const [playing, setPlaying] = useState(false);
-
+const PlayButton = ({ setSortingOn, sortingOn }) => {
     const handleToggle = () => {
-        setPlaying((p) => !p);
+        setSortingOn((p) => !p);
     };
 
     return (
         <button className={styles["play-button"]} onClick={handleToggle}>
-            {!playing && <FaPlay className={styles["play-button__play"]} />}
-            {playing && <FaPause className={styles["play-button__pause"]} />}
+            {!sortingOn && <FaPlay className={styles["play-button__play"]} />}
+            {sortingOn && <FaPause className={styles["play-button__pause"]} />}
         </button>
     );
 };

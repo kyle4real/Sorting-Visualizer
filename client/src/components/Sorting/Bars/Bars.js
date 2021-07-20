@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import Bar from "./Bar/Bar";
 import styles from "./Bars.module.scss";
 
+// Algorithm Imports
+import bubbleSort from "../../../algorithms/bubbleSort";
+import selectionSort from "../../../algorithms/selectionSort";
+import insertionSort from "../../../algorithms/insertionSort";
+// end Algorithm Imports
+
 // const data = [
 //     { id: 1, height: 50 },
 //     { id: 2, height: 24 },
@@ -13,14 +19,30 @@ import styles from "./Bars.module.scss";
 //     { id: 8, height: 69 },
 // ];
 
-const Bars = ({ dataSet, dataAmount }) => {
+const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
+    const [currentSet, setCurrentSet] = useState(dataSet);
+
+    useEffect(() => {
+        if (sortingOn) {
+            if (sortSelection === "Bubble Sort") {
+                bubbleSort(setCurrentSet);
+            } else if (sortSelection === "Selection Sort") {
+                selectionSort(setCurrentSet);
+            } else if (sortSelection === "Insertion Sort") {
+                insertionSort(setCurrentSet);
+            } else {
+                console.log("error");
+            }
+        }
+    }, [sortingOn, sortSelection]);
+
     return (
         <div className={styles["bars-container"]}>
             <div
                 className={styles["bars"]}
                 style={{ gridTemplateColumns: `repeat(${dataAmount.length}, 1fr)` }}
             >
-                {dataSet.map(({ id, height }) => (
+                {currentSet.map(({ id, height }) => (
                     <Bar key={id} height={height} />
                 ))}
             </div>

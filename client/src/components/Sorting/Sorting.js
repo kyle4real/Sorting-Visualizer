@@ -18,17 +18,35 @@ const newSet = (dataAmount = 50) => {
 
 const Sorting = ({ sortSelection, dataSelection, dataAmount }) => {
     const [dataSet, setDataSet] = useState(newSet);
+    const [sortingOn, setSortingOn] = useState(false);
 
     useEffect(() => {
         setDataSet(() => newSet(dataAmount));
     }, [dataAmount]);
 
+    if (sortingOn) {
+        console.log("sorting on");
+    } else {
+        console.log("sorting off");
+    }
+
     return (
         <div className={styles["sorting-container"]}>
             <div className={`container ${styles["sorting"]}`}>
                 <SetupProgress sortSelection={sortSelection} dataSelection={dataSelection} />
-                <Bars dataSet={dataSet} dataAmount={dataAmount} />
-                <Controls setDataSet={setDataSet} newSet={newSet} dataAmount={dataAmount} />
+                <Bars
+                    dataSet={dataSet}
+                    dataAmount={dataAmount}
+                    sortingOn={sortingOn}
+                    sortSelection={sortSelection}
+                />
+                <Controls
+                    setDataSet={setDataSet}
+                    newSet={newSet}
+                    dataAmount={dataAmount}
+                    setSortingOn={setSortingOn}
+                    sortingOn={sortingOn}
+                />
             </div>
         </div>
     );
