@@ -19,18 +19,17 @@ import insertionSort from "../../../algorithms/insertionSort";
 //     { id: 8, height: 69 },
 // ];
 
-const MS_ANIMATION_SPEED = 20;
+const MS_ANIMATION_SPEED = 1;
 
 const MAX_HEIGHT = 100;
 
-const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
+const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection, dataSelection }) => {
     // const [animations, setAnimations] = useState([]);
 
     useEffect(() => {
         if (sortingOn) {
-            let animations;
             if (sortSelection === "Bubble Sort") {
-                animations = bubbleSort(dataSet, dataAmount);
+                var animations = bubbleSort(dataSet, dataAmount);
             } else if (sortSelection === "Selection Sort") {
                 selectionSort(dataSet);
             } else if (sortSelection === "Insertion Sort") {
@@ -38,10 +37,10 @@ const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
             } else {
                 console.log("error");
             }
-            console.log(animations);
 
+            if (animations === undefined) return;
+            const dataBars = document.getElementsByClassName("data-bar");
             for (let i = 0; i < animations.length; i++) {
-                const dataBars = document.getElementsByClassName("data-bar");
                 const colorChange = i % 3 !== 1;
                 if (colorChange) {
                     const [barOneInx, barTwoInx] = animations[i];
@@ -68,8 +67,6 @@ const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
         }
     }, [sortingOn, sortSelection, dataSet, dataAmount]);
 
-    console.log(styles.$primary);
-
     return (
         <div className={styles["bars-container"]}>
             <div
@@ -77,7 +74,12 @@ const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection }) => {
                 style={{ gridTemplateColumns: `repeat(${dataAmount.length}, 1fr)` }}
             >
                 {dataSet.map(({ id, height, color }) => (
-                    <Bar key={id} height={height} color={color} />
+                    <Bar
+                        key={id}
+                        height={height}
+                        color={color}
+                        opacity={dataSelection && sortSelection ? 1 : 0}
+                    />
                 ))}
             </div>
         </div>

@@ -39,6 +39,7 @@ const Sorting = ({ sortSelection, dataSelection, dataAmount }) => {
                     dataAmount={dataAmount}
                     sortingOn={sortingOn}
                     sortSelection={sortSelection}
+                    dataSelection={dataSelection}
                 />
                 <Controls
                     setDataSet={setDataSet}
