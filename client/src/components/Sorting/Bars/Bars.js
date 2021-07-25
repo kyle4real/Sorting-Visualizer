@@ -8,6 +8,9 @@ import selectionSort from "../../../algorithms/selectionSort";
 import insertionSort from "../../../algorithms/insertionSort";
 // end Algorithm Imports
 
+// Animations import
+import { bubbleSortAnimate } from "../../../animations/animations";
+
 // const data = [
 //     { id: 1, height: 50 },
 //     { id: 2, height: 24 },
@@ -23,13 +26,18 @@ const MS_ANIMATION_SPEED = 1;
 
 const MAX_HEIGHT = 100;
 
-const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection, dataSelection }) => {
+const Bars = ({ dataSet, dataAmount, sortingOn, setSortingOn, sortSelection, dataSelection }) => {
     // const [animations, setAnimations] = useState([]);
 
     useEffect(() => {
         if (sortingOn) {
             if (sortSelection === "Bubble Sort") {
                 var animations = bubbleSort(dataSet, dataAmount);
+                const onFinish = () => {
+                    console.log("done");
+                    setSortingOn(false);
+                };
+                bubbleSortAnimate(animations, MS_ANIMATION_SPEED, MAX_HEIGHT, onFinish);
             } else if (sortSelection === "Selection Sort") {
                 selectionSort(dataSet);
             } else if (sortSelection === "Insertion Sort") {
@@ -37,35 +45,8 @@ const Bars = ({ dataSet, dataAmount, sortingOn, sortSelection, dataSelection }) 
             } else {
                 console.log("error");
             }
-
-            if (animations === undefined) return;
-            const dataBars = document.getElementsByClassName("data-bar");
-            for (let i = 0; i < animations.length; i++) {
-                const colorChange = i % 3 !== 1;
-                if (colorChange) {
-                    const [barOneInx, barTwoInx] = animations[i];
-                    const barOneStyling = dataBars[barOneInx].style;
-                    const barTwoStyling = dataBars[barTwoInx].style;
-                    const color = i % 3 === 0 ? "#1dc690" : "#278ab0";
-                    setTimeout(() => {
-                        barOneStyling.backgroundColor = color;
-                        barTwoStyling.backgroundColor = color;
-                    }, i * MS_ANIMATION_SPEED);
-                } else {
-                    if (!animations[i].length) continue;
-                    const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = animations[i];
-                    const barOneStyling = dataBars[barOneInx].style;
-                    const barTwoStyling = dataBars[barTwoInx].style;
-                    setTimeout(() => {
-                        barOneStyling.height =
-                            Math.round((barTwoHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
-                        barTwoStyling.height =
-                            Math.round((barOneHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
-                    }, i * MS_ANIMATION_SPEED);
-                }
-            }
         }
-    }, [sortingOn, sortSelection, dataSet, dataAmount]);
+    }, [sortingOn, sortSelection, dataSet, dataAmount, setSortingOn]);
 
     return (
         <div className={styles["bars-container"]}>

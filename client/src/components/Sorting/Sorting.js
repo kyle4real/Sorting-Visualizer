@@ -38,6 +38,7 @@ const Sorting = ({ sortSelection, dataSelection, dataAmount }) => {
                     dataSet={dataSet}
                     dataAmount={dataAmount}
                     sortingOn={sortingOn}
+                    setSortingOn={setSortingOn}
                     sortSelection={sortSelection}
                     dataSelection={dataSelection}
                 />
