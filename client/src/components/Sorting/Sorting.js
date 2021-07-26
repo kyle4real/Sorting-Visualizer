@@ -4,6 +4,15 @@ import Controls from "./Controls/Controls";
 import SetupProgress from "./SetupProgress/SetupProgress";
 import styles from "./Sorting.module.scss";
 
+// Algorithm Imports
+import bubbleSort from "../../algorithms/bubbleSort";
+import selectionSort from "../../algorithms/selectionSort";
+import insertionSort from "../../algorithms/insertionSort";
+// end Algorithm Imports
+
+// Animations import
+import { bubbleSortAnimate, refreshAnimate } from "../../animations/animations";
+
 const newSet = (dataAmount = 50) => {
     const data = [];
     for (let i = 0; i < dataAmount; i++) {
@@ -16,19 +25,49 @@ const newSet = (dataAmount = 50) => {
     return data;
 };
 
-const Sorting = ({ sortSelection, dataSelection, dataAmount }) => {
+const Sorting = ({ sortSelection, dataSelection, dataAmount, sortingOn, setSortingOn }) => {
+    const [speed, setSpeed] = useState(150);
     const [dataSet, setDataSet] = useState(newSet);
-    const [sortingOn, setSortingOn] = useState(false);
+    const [timers, setTimers] = useState(null);
 
     useEffect(() => {
         setDataSet(() => newSet(dataAmount));
     }, [dataAmount]);
 
-    if (sortingOn) {
-        console.log("sorting on");
-    } else {
-        console.log("sorting off");
-    }
+    const handlePlay = () => {
+        if (sortSelection === "Bubble Sort") {
+            var animations = bubbleSort(dataSet, dataAmount);
+            const onFinish = () => {
+                setSortingOn(false);
+            };
+            const timers = bubbleSortAnimate(animations, 302 - speed, onFinish);
+            setTimers(timers);
+        } else if (sortSelection === "Selection Sort") {
+            selectionSort(dataSet);
+        } else if (sortSelection === "Insertion Sort") {
+            insertionSort(dataSet);
+        } else {
+            console.log("error");
+        }
+    };
+
+    const handleStop = () => {
+        if (timers === null) return;
+        for (let i = 0; i < timers.length; i++) {
+            clearTimeout(timers[i]);
+        }
+        refreshAnimate();
+        setDataSet(() => newSet(dataAmount));
+        setTimers(null);
+    };
+
+    // useEffect(() => {
+    //     if (sortingOn) {
+
+    //     } else if (timers !== null) {
+
+    //     }
+    // }, [sortingOn, sortSelection, dataSet, dataAmount, setSortingOn, speed, timers]);
 
     return (
         <div className={styles["sorting-container"]}>
@@ -37,8 +76,6 @@ const Sorting = ({ sortSelection, dataSelection, dataAmount }) => {
                 <Bars
                     dataSet={dataSet}
                     dataAmount={dataAmount}
-                    sortingOn={sortingOn}
-                    setSortingOn={setSortingOn}
                     sortSelection={sortSelection}
                     dataSelection={dataSelection}
                 />
@@ -46,8 +83,12 @@ const Sorting = ({ sortSelection, dataSelection, dataAmount }) => {
                     setDataSet={setDataSet}
                     newSet={newSet}
                     dataAmount={dataAmount}
-                    setSortingOn={setSortingOn}
                     sortingOn={sortingOn}
+                    setSortingOn={setSortingOn}
+                    speed={speed}
+                    setSpeed={setSpeed}
+                    handlePlay={handlePlay}
+                    handleStop={handleStop}
                 />
             </div>
         </div>

@@ -4,6 +4,7 @@ import Options from "./components/Options/Options";
 import Sorting from "./components/Sorting/Sorting";
 
 function App() {
+    const [sortingOn, setSortingOn] = useState(false);
     const [sortSelection, setSortSelection] = useState(null);
     const [dataSelection, setDataSelection] = useState(null);
     const [dataAmount, setDataAmount] = useState(50);
@@ -22,11 +23,14 @@ function App() {
                 dataSelection={dataSelection}
                 setDataAmount={setDataAmount}
                 dataAmount={dataAmount}
+                sortingOn={sortingOn}
             />
             <Sorting
                 sortSelection={sortSelection}
                 dataSelection={dataSelection}
                 dataAmount={dataAmount}
+                sortingOn={sortingOn}
+                setSortingOn={setSortingOn}
             />
         </div>
     );

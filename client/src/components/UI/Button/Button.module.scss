@@ -28,6 +28,10 @@ $buttonColor: $secondary;
         color: $secondary;
     }
 
+    &:disabled {
+        background: rgba($buttonBG, 0.3);
+    }
+
     &.active {
         // padding: 0.4rem 0;
         background: rgba($secondary, 0.7);

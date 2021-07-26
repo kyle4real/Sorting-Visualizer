@@ -9,6 +9,7 @@ const Options = ({
     dataSelection,
     setDataAmount,
     dataAmount,
+    sortingOn,
 }) => {
     const handleSortClick = (e) => {
         const selection = e.target.textContent;
@@ -37,34 +38,43 @@ const Options = ({
                     <Button
                         handleClick={handleSortClick}
                         isActive={sortSelection === "Bubble Sort"}
+                        disabled={sortingOn}
                     >
                         Bubble Sort
                     </Button>
                     <Button
                         handleClick={handleSortClick}
                         isActive={sortSelection === "Selection Sort"}
+                        disabled={sortingOn}
                     >
                         Selection Sort
                     </Button>
                     <Button
                         handleClick={handleSortClick}
                         isActive={sortSelection === "Insertion Sort"}
+                        disabled={sortingOn}
                     >
                         Insertion Sort
                     </Button>
                 </div>
                 <div className={styles["options__data"]}>
-                    <Button handleClick={handleDataClick} isActive={dataSelection === "Random"}>
+                    <Button
+                        handleClick={handleDataClick}
+                        isActive={dataSelection === "Random"}
+                        disabled={sortingOn}
+                    >
                         Random
                     </Button>
                     <Button
                         handleClick={handleDataClick}
                         isActive={dataSelection === "Nearly Sorted"}
+                        disabled={sortingOn}
                     >
                         Nearly Sorted
                     </Button>
                     <div className={styles["selection-container"]}>
                         <select
+                            disabled={sortingOn}
                             className={styles["selection"]}
                             onChange={handleAmountChange}
                             value={dataAmount}
