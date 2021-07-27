@@ -29,6 +29,8 @@ const Bars = ({ nums, animations }) => {
         setAnimation(animations);
     }, [animations]);
 
+    console.log(animation);
+
     //  Actions
 
     const reset = (array) => {
