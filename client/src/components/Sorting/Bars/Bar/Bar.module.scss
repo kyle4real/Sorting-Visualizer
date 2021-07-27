@@ -8,4 +8,14 @@
     // border-top-right-radius: 4px;
     // border-top-left-radius: 4px;
     transition: opacity 0.8s ease 0.2s;
+
+    &__sorted {
+        background: $info;
+    }
+    &__stateA {
+        background: red;
+    }
+    &__stateB {
+        background: $secondary;
+    }
 }
