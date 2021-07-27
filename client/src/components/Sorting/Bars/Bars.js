@@ -18,7 +18,7 @@ const Bars = ({ nums, animations }) => {
     const [sortedIndicies, setSortedIndicies] = useState([]);
 
     const [timeoutIds, setTimeoutIds] = useState([]);
-    const [speed, setSpeed] = useState(1);
+    const [speed, setSpeed] = useState(5);
 
     useEffect(() => {
         reset(nums);

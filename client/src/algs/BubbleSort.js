@@ -12,7 +12,7 @@ const BubbleSort = (arr) => {
 
     // sorting alg with animation capture
     for (let i = 0; i < nums.length; i++) {
-        for (let j = 0; j < nums.length; j++) {
+        for (let j = 0; j < nums.length - i - 1; j++) {
             // visual: comparing A[j] and A[j + 1]
             addToAnimation(animation, nums, lastSorted(animation), [j, j + 1]);
             if (nums[j] > nums[j + 1]) {
