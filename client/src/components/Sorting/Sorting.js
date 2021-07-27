@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Bars from "./Bars/Bars";
 import Controls from "./Controls/Controls";
 import SetupProgress from "./SetupProgress/SetupProgress";
@@ -12,6 +12,7 @@ import insertionSort from "../../algorithms/insertionSort";
 
 // Animations import
 import { bubbleSortAnimate, refreshAnimate } from "../../animations/animations";
+import SortContext from "../../store/sort-context";
 
 const newSet = (dataAmount = 50) => {
     const data = [];
@@ -25,26 +26,28 @@ const newSet = (dataAmount = 50) => {
     return data;
 };
 
-const Sorting = ({ sortSelection, dataSelection, dataAmount, sortingOn, setSortingOn }) => {
+const Sorting = ({ sortingOn, setSortingOn }) => {
+    const sortCtx = useContext(SortContext);
+
     const [speed, setSpeed] = useState(150);
     const [dataSet, setDataSet] = useState(newSet);
     const [timers, setTimers] = useState(null);
 
     useEffect(() => {
-        setDataSet(() => newSet(dataAmount));
-    }, [dataAmount]);
+        setDataSet(() => newSet(sortCtx.dataAmount));
+    }, [sortCtx.dataAmount]);
 
     const handlePlay = () => {
-        if (sortSelection === "Bubble Sort") {
-            var animations = bubbleSort(dataSet, dataAmount);
+        if (sortCtx.sortSelection === "Bubble Sort") {
+            var animations = bubbleSort(dataSet, sortCtx.dataAmount);
             const onFinish = () => {
                 setSortingOn(false);
             };
             const timers = bubbleSortAnimate(animations, 302 - speed, onFinish);
             setTimers(timers);
-        } else if (sortSelection === "Selection Sort") {
+        } else if (sortCtx.sortSelection === "Selection Sort") {
             selectionSort(dataSet);
-        } else if (sortSelection === "Insertion Sort") {
+        } else if (sortCtx.sortSelection === "Insertion Sort") {
             insertionSort(dataSet);
         } else {
             console.log("error");
@@ -57,7 +60,7 @@ const Sorting = ({ sortSelection, dataSelection, dataAmount, sortingOn, setSorti
             clearTimeout(timers[i]);
         }
         refreshAnimate();
-        setDataSet(() => newSet(dataAmount));
+        setDataSet(() => newSet(sortCtx.dataAmount));
         setTimers(null);
     };
 
@@ -72,17 +75,12 @@ const Sorting = ({ sortSelection, dataSelection, dataAmount, sortingOn, setSorti
     return (
         <div className={styles["sorting-container"]}>
             <div className={`container ${styles["sorting"]}`}>
-                <SetupProgress sortSelection={sortSelection} dataSelection={dataSelection} />
-                <Bars
-                    dataSet={dataSet}
-                    dataAmount={dataAmount}
-                    sortSelection={sortSelection}
-                    dataSelection={dataSelection}
-                />
+                <SetupProgress />
+                <Bars dataSet={dataSet} />
                 <Controls
                     setDataSet={setDataSet}
                     newSet={newSet}
-                    dataAmount={dataAmount}
+                    dataAmount={sortCtx.dataAmount}
                     sortingOn={sortingOn}
                     setSortingOn={setSortingOn}
                     speed={speed}

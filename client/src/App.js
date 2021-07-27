@@ -2,37 +2,24 @@ import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Options from "./components/Options/Options";
 import Sorting from "./components/Sorting/Sorting";
+import SortProvider from "./store/SortProvider";
 
 function App() {
     const [sortingOn, setSortingOn] = useState(false);
-    const [sortSelection, setSortSelection] = useState(null);
-    const [dataSelection, setDataSelection] = useState(null);
-    const [dataAmount, setDataAmount] = useState(50);
+    // const [sortSelection, setSortSelection] = useState(null);
+    // const [dataSelection, setDataSelection] = useState(null);
+    // const [dataAmount, setDataAmount] = useState(50);
 
     // console.log(sortSelection);
     // console.log(dataSelection);
     // console.log(dataAmount);
 
     return (
-        <div>
+        <SortProvider>
             <Header />
-            <Options
-                setSortSelection={setSortSelection}
-                sortSelection={sortSelection}
-                setDataSelection={setDataSelection}
-                dataSelection={dataSelection}
-                setDataAmount={setDataAmount}
-                dataAmount={dataAmount}
-                sortingOn={sortingOn}
-            />
-            <Sorting
-                sortSelection={sortSelection}
-                dataSelection={dataSelection}
-                dataAmount={dataAmount}
-                sortingOn={sortingOn}
-                setSortingOn={setSortingOn}
-            />
-        </div>
+            <Options sortingOn={sortingOn} />
+            <Sorting sortingOn={sortingOn} setSortingOn={setSortingOn} />
+        </SortProvider>
     );
 }
 

@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import SortContext from "../../../store/sort-context";
 import Bar from "./Bar/Bar";
 import styles from "./Bars.module.scss";
 
-const Bars = ({ dataSet, dataAmount, sortSelection, dataSelection }) => {
+const Bars = ({ dataSet }) => {
+    const sortCtx = useContext(SortContext);
+
     return (
         <div className={styles["bars-container"]}>
             <div
                 className={styles["bars"]}
-                style={{ gridTemplateColumns: `repeat(${dataAmount.length}, 1fr)` }}
+                style={{ gridTemplateColumns: `repeat(${sortCtx.dataAmount.length}, 1fr)` }}
             >
                 {dataSet.map(({ id, height, color }) => (
                     <Bar
                         key={id}
                         height={height}
                         color={color}
-                        opacity={dataSelection && sortSelection ? 1 : 0}
+                        opacity={sortCtx.dataSelection && sortCtx.sortSelection ? 1 : 0}
                     />
                 ))}
             </div>
