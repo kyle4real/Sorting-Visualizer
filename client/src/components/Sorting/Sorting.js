@@ -4,6 +4,8 @@ import Controls from "./Controls/Controls";
 import SetupProgress from "./SetupProgress/SetupProgress";
 import styles from "./Sorting.module.scss";
 
+import { randomDataSet } from "../../helpers/generateDataSet";
+
 // Algorithm Imports
 import bubbleSort from "../../algorithms/bubbleSort";
 import selectionSort from "../../algorithms/selectionSort";
@@ -14,27 +16,15 @@ import insertionSort from "../../algorithms/insertionSort";
 import { bubbleSortAnimate, refreshAnimate } from "../../animations/animations";
 import SortContext from "../../store/sort-context";
 
-const newSet = (dataAmount = 50) => {
-    const data = [];
-    for (let i = 0; i < dataAmount; i++) {
-        const newObj = {
-            id: Math.round(Math.random() * 1000000),
-            height: Math.round(Math.random() * (100 - 3 + 1) + 3),
-        };
-        data.push(newObj);
-    }
-    return data;
-};
-
 const Sorting = ({ sortingOn, setSortingOn }) => {
     const sortCtx = useContext(SortContext);
 
     const [speed, setSpeed] = useState(150);
-    const [dataSet, setDataSet] = useState(newSet);
+    const [dataSet, setDataSet] = useState(() => randomDataSet());
     const [timers, setTimers] = useState(null);
 
     useEffect(() => {
-        setDataSet(() => newSet(sortCtx.dataAmount));
+        setDataSet(() => randomDataSet(sortCtx.dataAmount));
     }, [sortCtx.dataAmount]);
 
     const handlePlay = () => {
@@ -60,7 +50,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
             clearTimeout(timers[i]);
         }
         refreshAnimate();
-        setDataSet(() => newSet(sortCtx.dataAmount));
+        setDataSet(() => randomDataSet(sortCtx.dataAmount));
         setTimers(null);
     };
 
@@ -79,7 +69,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
                 <Bars dataSet={dataSet} />
                 <Controls
                     setDataSet={setDataSet}
-                    newSet={newSet}
+                    newSet={randomDataSet}
                     dataAmount={sortCtx.dataAmount}
                     sortingOn={sortingOn}
                     setSortingOn={setSortingOn}
