@@ -55,8 +55,8 @@ const Options = ({ sortingOn }) => {
                             value={sortCtx.dataAmount}
                         >
                             <option value="50">50</option>
-                            <option value="100">100</option>
-                            <option value="200">200</option>
+                            <option value="30">30</option>
+                            <option value="10">10</option>
                         </select>
                     </div>
                 </div>

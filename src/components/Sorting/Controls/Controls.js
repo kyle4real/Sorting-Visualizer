@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Controls.module.scss";
 import PlayButton from "./PlayButton/PlayButton";
 import Button from "./../../UI/Button/Button";
@@ -9,10 +9,12 @@ const Controls = ({
     dataAmount,
     setSortingOn,
     sortingOn,
-    speed,
-    setSpeed,
+    handleStepForward,
+    handleStepBackward,
     handlePlay,
-    handleStop,
+    handlePause,
+    speed,
+    adjustSpeed,
 }) => {
     const handleReset = () => {
         setDataSet(() => newSet(dataAmount));
@@ -22,7 +24,7 @@ const Controls = ({
     };
 
     const handleRangeChange = (e) => {
-        setSpeed(e.target.value);
+        adjustSpeed(e.target.value);
     };
 
     return (
@@ -42,21 +44,25 @@ const Controls = ({
                     setSortingOn={setSortingOn}
                     sortingOn={sortingOn}
                     handlePlay={handlePlay}
-                    handleStop={handleStop}
+                    handlePause={handlePause}
                 />
                 <div className={styles["btns"]}>
-                    {/* <div className={styles["btns-2"]}>
-                        <Button className={"controls-right"}>{"<"}</Button>
-                        <Button className={"controls-right"}>{">"}</Button>
-                    </div> */}
+                    <div className={styles["btns-2"]}>
+                        <Button className={"controls-right"} handleClick={handleStepBackward}>
+                            {"<"}
+                        </Button>
+                        <Button className={"controls-right"} handleClick={handleStepForward}>
+                            {">"}
+                        </Button>
+                    </div>
                     <input
-                        disabled={sortingOn}
+                        // disabled={sortingOn}
                         className={styles.range}
                         onChange={handleRangeChange}
                         type="range"
                         min="1"
-                        max="301"
-                        step="25"
+                        max="11"
+                        step="1"
                         value={speed}
                     />
                 </div>
