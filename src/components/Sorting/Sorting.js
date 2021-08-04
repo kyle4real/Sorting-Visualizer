@@ -6,14 +6,6 @@ import styles from "./Sorting.module.scss";
 
 import { randomDataSet } from "../../helpers/generateDataSet";
 
-// Algorithm Imports
-// import bubbleSort from "../../algorithms/bubbleSort";
-// import selectionSort from "../../algorithms/selectionSort";
-// import insertionSort from "../../algorithms/insertionSort";
-// end Algorithm Imports
-
-// Animations import
-// import { bubbleSortAnimate, refreshAnimate } from "../../animations/animations";
 import SortContext from "../../store/sort-context";
 
 import BubbleSort from "./../../algs/BubbleSort";
@@ -31,6 +23,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
         if (sortCtx.dataAmount && sortCtx.sortSelection && sortCtx.dataSelection) {
             const animation = BubbleSort(dataSet);
             setAnimations(animation);
+            console.log("animations created");
         }
     }, [sortCtx.dataAmount, sortCtx.sortSelection, sortCtx.dataSelection, dataSet]);
 
@@ -53,11 +46,6 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
         setAnimation(animations);
     }, [dataSet, animations]);
 
-    // useEffect(() => {
-    //     clearTimeouts();
-    //     setAnimation(animations);
-    // }, [animations]);
-
     //  Actions
 
     const reset = (array) => {
@@ -78,6 +66,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
     };
 
     const changeVisualState = (visualState) => {
+        console.log(visualState);
         setArray(visualState.array);
         setGroupA(visualState.groupA);
         setGroupB(visualState.groupB);
@@ -146,10 +135,8 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
     };
 
     const onComplete = () => {
-        console.log("completed");
+        setSortingOn(false);
     };
-
-    console.log(animation);
 
     return (
         <div className={styles["sorting-container"]}>

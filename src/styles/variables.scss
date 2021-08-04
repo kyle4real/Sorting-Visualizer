@@ -1,7 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Roboto+Mono:wght@400;500&display=swap");
+
+$roboto: "Roboto Mono", monospace;
+
 /* color palette: https://www.canva.com/colors/color-palettes/northern-lights-3/ */
-$primary: #278ab0;
+// $primary: #278ab0;
+$primary: #ec1a1a;
 $primaryDesaturated: desaturate($primary, 20%);
-$secondary: #1c4670;
+// $secondary: #1c4670;
+$secondary: #1a1416;
 $info: #1dc690;
 $white: #eaeae0;
 
