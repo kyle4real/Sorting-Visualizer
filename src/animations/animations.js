@@ -12,27 +12,22 @@ export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
     const dataBars = document.getElementsByClassName("data-bar");
     let currentIteration = 0;
     for (let i = 0; i < animations.length; i++) {
-        if (animations[i].length === 3) {
-            const [barOneInx, barTwoInx] = animations[i];
+        const c = animations[i];
+        if (c.length === 1) {
+            const [barOneInx] = c;
             const barOneStyling = dataBars[barOneInx].style;
-            const barTwoStyling = dataBars[barTwoInx].style;
-            const color = BG_CHECKING;
+            // eslint-disable-next-line no-loop-func
             let timer = setTimeout(() => {
-                barOneStyling.backgroundColor = color;
-                barTwoStyling.backgroundColor = color;
+                barOneStyling.backgroundColor = BG_SORTED;
+                for (let j = currentIteration + 1; j < amount; j++) {
+                    dataBars[j].style.backgroundColor = BG_INITIAL;
+                }
+                currentIteration++;
             }, i * speed);
             timers.push(timer);
-        } else if (animations[i].length === 2) {
-            const [barOneInx, barTwoInx] = animations[i];
-            const barOneStyling = dataBars[barOneInx].style;
-            const barTwoStyling = dataBars[barTwoInx].style;
-            let timer = setTimeout(() => {
-                barOneStyling.backgroundColor = BG_INITIAL;
-                barTwoStyling.backgroundColor = BG_CHECKING;
-            }, i * speed);
-            timers.push(timer);
-        } else if (animations[i].length === 4) {
-            const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = animations[i];
+        } else if (c.length === 4 || c.length === 0) {
+            if (!c.length) continue;
+            const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = c;
             const barOneStyling = dataBars[barOneInx].style;
             const barTwoStyling = dataBars[barTwoInx].style;
             const color = BG_SWAPPED;
@@ -43,16 +38,13 @@ export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
                 barTwoStyling.backgroundColor = color;
             }, i * speed);
             timers.push(timer);
-        } else if (animations[i].length === 1) {
-            const [barOneInx] = animations[i];
+        } else {
+            const [barOneInx, barTwoInx] = c;
             const barOneStyling = dataBars[barOneInx].style;
-            // eslint-disable-next-line no-loop-func
+            const barTwoStyling = dataBars[barTwoInx].style;
             let timer = setTimeout(() => {
-                barOneStyling.backgroundColor = BG_SORTED;
-                for (let j = currentIteration + 1; j < amount; j++) {
-                    dataBars[j].style.backgroundColor = BG_INITIAL;
-                }
-                currentIteration++;
+                barOneStyling.backgroundColor = c.length === 2 ? BG_INITIAL : BG_CHECKING;
+                barTwoStyling.backgroundColor = BG_CHECKING;
             }, i * speed);
             timers.push(timer);
         }

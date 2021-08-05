@@ -47,7 +47,7 @@ const Sorting = () => {
         if (sortCtx.sortSelection === "Bubble Sort") {
             timerArr = bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
         } else if (sortCtx.sortSelection === "Selection Sort") {
-            timerArr = selectionSortAnimate(animations, 5, null, sortCtx.dataAmount);
+            timerArr = selectionSortAnimate(animations, 2, null, sortCtx.dataAmount);
         }
         setTimers(timerArr);
     };
