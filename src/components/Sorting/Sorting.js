@@ -16,6 +16,9 @@ import {
 } from "../../animations/animations";
 import selectionSort from "../../algorithms/selectionSort";
 
+// temp data set
+const tempData = [30, 60, 10, 40, 50, 20, 70, 5, 90, 100];
+
 const Sorting = () => {
     const sortCtx = useContext(SortContext);
     const [dataSet, setDataSet] = useState(() => randomDataSet());
@@ -44,7 +47,7 @@ const Sorting = () => {
         if (sortCtx.sortSelection === "Bubble Sort") {
             timerArr = bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
         } else if (sortCtx.sortSelection === "Selection Sort") {
-            timerArr = selectionSortAnimate(animations, 100, null, sortCtx.dataAmount);
+            timerArr = selectionSortAnimate(animations, 5, null, sortCtx.dataAmount);
         }
         setTimers(timerArr);
     };

@@ -7,7 +7,59 @@ const BG_SWAPPED = "#1dc690";
 const BG_SORTED = "#ec1a1a";
 const BG_INITIAL = "#1a1416";
 
-export const selectionSortAnimate = (animations, speed, onFinish, amount) => {};
+export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
+    if (animations === undefined) return;
+    const dataBars = document.getElementsByClassName("data-bar");
+    let currentIteration = 0;
+    for (let i = 0; i < animations.length; i++) {
+        if (animations[i].length === 3) {
+            const [barOneInx, barTwoInx] = animations[i];
+            const barOneStyling = dataBars[barOneInx].style;
+            const barTwoStyling = dataBars[barTwoInx].style;
+            const color = BG_CHECKING;
+            let timer = setTimeout(() => {
+                barOneStyling.backgroundColor = color;
+                barTwoStyling.backgroundColor = color;
+            }, i * speed);
+            timers.push(timer);
+        } else if (animations[i].length === 2) {
+            const [barOneInx, barTwoInx] = animations[i];
+            const barOneStyling = dataBars[barOneInx].style;
+            const barTwoStyling = dataBars[barTwoInx].style;
+            let timer = setTimeout(() => {
+                barOneStyling.backgroundColor = BG_INITIAL;
+                barTwoStyling.backgroundColor = BG_CHECKING;
+            }, i * speed);
+            timers.push(timer);
+        } else if (animations[i].length === 4) {
+            const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = animations[i];
+            const barOneStyling = dataBars[barOneInx].style;
+            const barTwoStyling = dataBars[barTwoInx].style;
+            const color = BG_SWAPPED;
+            let timer = setTimeout(() => {
+                barOneStyling.height = Math.round((barTwoHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
+                barTwoStyling.height = Math.round((barOneHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
+                barOneStyling.backgroundColor = color;
+                barTwoStyling.backgroundColor = color;
+            }, i * speed);
+            timers.push(timer);
+        } else if (animations[i].length === 1) {
+            const [barOneInx] = animations[i];
+            const barOneStyling = dataBars[barOneInx].style;
+            // eslint-disable-next-line no-loop-func
+            let timer = setTimeout(() => {
+                barOneStyling.backgroundColor = BG_SORTED;
+                for (let j = currentIteration + 1; j < amount; j++) {
+                    dataBars[j].style.backgroundColor = BG_INITIAL;
+                }
+                currentIteration++;
+            }, i * speed);
+            timers.push(timer);
+        }
+    }
+
+    return timers;
+};
 
 export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
     if (animations === undefined) return;
