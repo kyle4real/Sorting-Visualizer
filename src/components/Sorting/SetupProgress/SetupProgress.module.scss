@@ -1,30 +1,28 @@
 @import "../../../styles/variables.scss";
 
-.setupProgress-container {
+.progress {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 4rem;
     width: 100%;
     margin: 1.25rem 0;
-}
 
-.setupProgress,
-.progress-titles {
-    padding: 0 6rem;
-    width: 100%;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    color: $secondary;
-}
-
-.progress-titles {
-    padding: 0 4rem;
-    height: 1rem;
-    justify-content: space-between;
-}
-
-.progress-titles p {
-    font-size: 0.9rem;
+    &__setup,
+    &__titles {
+        padding: 0 6rem;
+        width: 100%;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        color: $secondary;
+    }
+    &__titles {
+        padding: 0 4rem;
+        height: 1rem;
+        justify-content: space-between;
+        p {
+            font-size: 0.9rem;
+        }
+    }
 }

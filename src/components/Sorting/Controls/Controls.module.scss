@@ -1,6 +1,6 @@
 @import "./../../../styles/variables.scss";
 
-.controls-container {
+.controls__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,19 +12,6 @@
 .controls {
     height: 4rem;
     display: flex;
-    gap: 1rem;
     align-items: center;
     justify-content: center;
-
-    .btns {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-    }
-
-    .btns-2 {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
 }

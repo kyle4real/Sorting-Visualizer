@@ -1,20 +1,21 @@
 import React from "react";
-import styles from "./ProgressBar.module.scss";
+
+import classes from "./ProgressBar.module.scss";
 
 const ProgressBar = ({ fillRight, fillLeft, full }) => {
     return (
         <>
             {fillRight && (
-                <div className={styles["progress-bar-right"]}>
+                <div className={classes.progress__bar__right}>
                     <div
-                        className={`${styles["progress-bar-right__fill"]} ${full && styles.fill}`}
+                        className={`${classes.progress__bar__right__fill} ${full && classes.fill}`}
                     ></div>
                 </div>
             )}
             {fillLeft && (
-                <div className={styles["progress-bar-left"]}>
+                <div className={classes.progress__bar__left}>
                     <div
-                        className={`${styles["progress-bar-left__fill"]} ${!full && styles.fill}`}
+                        className={`${classes.progress__bar__left__fill} ${!full && classes.fill}`}
                     ></div>
                 </div>
             )}

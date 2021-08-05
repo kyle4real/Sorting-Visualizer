@@ -8,7 +8,7 @@ $buttonColor: $secondary;
     font: inherit;
     background: $buttonBG;
     border: 2px solid $buttonBG;
-    border-radius: 4px;
+    border-radius: $borderRadius;
     box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: background 0.3s ease, color 0.3s ease;
@@ -17,6 +17,7 @@ $buttonColor: $secondary;
     font-size: 0.85rem;
     letter-spacing: 0.1px;
     min-width: 145px;
+    letter-spacing: $letterSpacing;
 
     &:active {
         border-color: transparent;
@@ -36,29 +37,5 @@ $buttonColor: $secondary;
         // padding: 0.4rem 0;
         background: rgba($secondary, 0.7);
         color: $white;
-    }
-}
-
-.controls-left {
-    color: $secondary;
-    background: white;
-    min-width: 100px;
-    border: white;
-
-    &:hover {
-        background: rgba(white, 0.7);
-        color: $primary;
-    }
-}
-
-.controls-right {
-    color: $secondary;
-    background: white;
-    min-width: 45px;
-    border: white;
-
-    &:hover {
-        background: rgba(white, 0.7);
-        color: $primary;
     }
 }

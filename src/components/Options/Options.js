@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import SortContext from "../../store/sort-context";
 import Button from "../UI/Button/Button";
-import styles from "./Options.module.scss";
+
+import classes from "./Options.module.scss";
 
 const Options = () => {
     const sortCtx = useContext(SortContext);
 
     return (
-        <div className={styles["options-container"]}>
-            <div className={`container ${styles["options"]}`}>
-                <div className={styles["options__sort"]}>
+        <div className={classes.options__container}>
+            <div className={`container ${classes.options}`}>
+                <div className={classes.options__sort}>
                     <Button
                         handleClick={sortCtx.changeSort}
                         isActive={sortCtx.sortSelection === "Bubble Sort"}
@@ -32,7 +33,7 @@ const Options = () => {
                         Insertion Sort
                     </Button>
                 </div>
-                <div className={styles["options__data"]}>
+                <div className={classes.options__data}>
                     <Button
                         handleClick={sortCtx.changeData}
                         isActive={sortCtx.dataSelection === "Random"}
@@ -47,10 +48,10 @@ const Options = () => {
                     >
                         Nearly Sorted
                     </Button>
-                    <div className={styles["selection-container"]}>
+                    <div className={classes.options__selection}>
                         <select
                             disabled={sortCtx.sortingOn}
-                            className={styles["selection"]}
+                            className={classes.options__selection__select}
                             onChange={sortCtx.changeDataAmount}
                             value={sortCtx.dataAmount}
                         >

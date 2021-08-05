@@ -1,11 +1,12 @@
 @import "../../../../styles/variables.scss";
 
 .bar {
+    &:not(:last-child) {
+        margin-right: 1px;
+    }
     width: 100%;
-    border-bottom: none;
     background: $secondary;
-    // border: 1px solid $secondary;
-    // border-top-right-radius: 4px;
-    // border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
     transition: opacity 0.8s ease 0.2s;
 }

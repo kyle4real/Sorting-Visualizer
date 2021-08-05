@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./CompletedNode.module.scss";
+
+import classes from "./CompletedNode.module.scss";
 
 const CompletedNode = ({ full, mid }) => {
     return (
         <>
             <div
-                className={`${styles["completed-node"]} ${mid && styles.mid} ${
-                    full && styles.full
+                className={`${classes.completed__node} ${mid && classes.mid} ${
+                    full && classes.full
                 }`}
             ></div>
         </>

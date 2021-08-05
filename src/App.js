@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import Header from "./components/Header/Header";
 import Options from "./components/Options/Options";
 import Sorting from "./components/Sorting/Sorting";
-import SortContext from "./store/sort-context";
 import SortProvider from "./store/SortProvider";
 
 function App() {

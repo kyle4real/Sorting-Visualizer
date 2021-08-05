@@ -1,7 +1,7 @@
 @import "../../../../styles/variables.scss";
 
-.progress-bar-right,
-.progress-bar-left {
+.progress__bar__right,
+.progress__bar__left {
     flex: 1;
     height: 0.5rem;
     box-shadow: 0 0 6px -2px rgba(0, 0, 0, 0.3);
@@ -18,14 +18,14 @@
     }
 }
 
-.progress-bar-right {
+.progress__bar__right {
     background: white;
     &__fill {
         background: linear-gradient(90deg, $secondary, $primary);
     }
 }
 
-.progress-bar-left {
+.progress__bar__left {
     background: linear-gradient(90deg, $primary, $secondary);
     &__fill {
         background: white;

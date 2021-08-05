@@ -46,8 +46,8 @@ const Sorting = () => {
     };
 
     return (
-        <div className={styles["sorting-container"]}>
-            <div className={`container ${styles["sorting"]}`}>
+        <div className={styles.sorting__container}>
+            <div className={`container ${styles.sorting}`}>
                 <SetupProgress />
                 <Bars array={dataSet} />
                 <Controls handlePlay={handlePlay} handleReset={handleReset} />
