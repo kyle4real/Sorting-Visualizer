@@ -31,7 +31,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
 
     const handlePlay = () => {
         console.log(animations);
-        bubbleSortAnimate(animations, 100);
+        bubbleSortAnimate(animations, 10, null, sortCtx.dataAmount);
     };
 
     const handleReset = () => {
