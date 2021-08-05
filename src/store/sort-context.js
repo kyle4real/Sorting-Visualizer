@@ -5,6 +5,7 @@ const SortContext = React.createContext({
     sortSelection: null,
     dataSelection: null,
     dataAmount: 50,
+    changeSortingOn: () => {},
     changeSort: (type) => {},
     changeData: (type) => {},
     changeDataAmount: (amount) => {},

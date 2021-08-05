@@ -11,7 +11,7 @@ import SortContext from "../../store/sort-context";
 import bubbleSort from "./../../algorithms/bubbleSort";
 import { bubbleSortAnimate, refreshAnimate } from "../../animations/animations";
 
-const Sorting = ({ sortingOn, setSortingOn }) => {
+const Sorting = () => {
     const sortCtx = useContext(SortContext);
     const [dataSet, setDataSet] = useState(() => randomDataSet());
     const [animations, setAnimations] = useState(null);
@@ -50,12 +50,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
             <div className={`container ${styles["sorting"]}`}>
                 <SetupProgress />
                 <Bars array={dataSet} />
-                <Controls
-                    handlePlay={handlePlay}
-                    handleReset={handleReset}
-                    sortingOn={sortingOn}
-                    setSortingOn={setSortingOn}
-                />
+                <Controls handlePlay={handlePlay} handleReset={handleReset} />
             </div>
         </div>
     );

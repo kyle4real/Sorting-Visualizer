@@ -3,7 +3,7 @@ import SortContext from "../../store/sort-context";
 import Button from "../UI/Button/Button";
 import styles from "./Options.module.scss";
 
-const Options = ({ sortingOn }) => {
+const Options = () => {
     const sortCtx = useContext(SortContext);
 
     return (
@@ -13,21 +13,21 @@ const Options = ({ sortingOn }) => {
                     <Button
                         handleClick={sortCtx.changeSort}
                         isActive={sortCtx.sortSelection === "Bubble Sort"}
-                        disabled={sortingOn}
+                        disabled={sortCtx.sortingOn}
                     >
                         Bubble Sort
                     </Button>
                     <Button
                         handleClick={sortCtx.changeSort}
                         isActive={sortCtx.sortSelection === "Selection Sort"}
-                        disabled={sortingOn}
+                        disabled={sortCtx.sortingOn}
                     >
                         Selection Sort
                     </Button>
                     <Button
                         handleClick={sortCtx.changeSort}
                         isActive={sortCtx.sortSelection === "Insertion Sort"}
-                        disabled={sortingOn}
+                        disabled={sortCtx.sortingOn}
                     >
                         Insertion Sort
                     </Button>
@@ -36,20 +36,20 @@ const Options = ({ sortingOn }) => {
                     <Button
                         handleClick={sortCtx.changeData}
                         isActive={sortCtx.dataSelection === "Random"}
-                        disabled={sortingOn}
+                        disabled={sortCtx.sortingOn}
                     >
                         Random
                     </Button>
                     <Button
                         handleClick={sortCtx.changeData}
                         isActive={sortCtx.dataSelection === "Nearly Sorted"}
-                        disabled={sortingOn}
+                        disabled={sortCtx.sortingOn}
                     >
                         Nearly Sorted
                     </Button>
                     <div className={styles["selection-container"]}>
                         <select
-                            disabled={sortingOn}
+                            disabled={sortCtx.sortingOn}
                             className={styles["selection"]}
                             onChange={sortCtx.changeDataAmount}
                             value={sortCtx.dataAmount}

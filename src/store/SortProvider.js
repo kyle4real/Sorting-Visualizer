@@ -10,6 +10,9 @@ const defaultSortState = {
 };
 
 const sortReducer = (state, action) => {
+    if (action.type === "SORTING_ON") {
+        return { ...state, sortingOn: !state.sortingOn };
+    }
     if (action.type === "SORT_SELECT") {
         const isSame = action.payload === state.sortSelection;
         return { ...state, sortSelection: isSame ? null : action.payload };
@@ -27,6 +30,10 @@ const sortReducer = (state, action) => {
 const SortProvider = (props) => {
     const [sortState, dispatch] = useReducer(sortReducer, defaultSortState);
 
+    const changeSortingOnHandler = () => {
+        dispatch({ type: "SORTING_ON" });
+    };
+
     const changeSortHandler = (selection) => {
         selection = selection.target.textContent;
         dispatch({ type: "SORT_SELECT", payload: selection });
@@ -41,9 +48,11 @@ const SortProvider = (props) => {
     };
 
     const sortContext = {
+        sortingOn: sortState.sortingOn,
         sortSelection: sortState.sortSelection,
         dataSelection: sortState.dataSelection,
         dataAmount: sortState.dataAmount,
+        changeSortingOn: changeSortingOnHandler,
         changeSort: changeSortHandler,
         changeData: changeDataHandler,
         changeDataAmount: changeDataAmountHandler,

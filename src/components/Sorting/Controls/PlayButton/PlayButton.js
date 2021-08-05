@@ -4,16 +4,16 @@ import styles from "./PlayButton.module.scss";
 import { FaPlay } from "react-icons/fa";
 import { BiReset } from "react-icons/bi";
 
-const PlayButton = ({ setSortingOn, sortingOn, handlePlay, handleReset }) => {
+const PlayButton = ({ handlePlay, handleReset }) => {
     const sortCtx = useContext(SortContext);
 
     const handleToggle = () => {
-        setSortingOn((p) => !p);
-        if (!sortingOn) {
+        if (!sortCtx.sortingOn) {
             handlePlay();
         } else {
             handleReset();
         }
+        sortCtx.changeSortingOn();
     };
 
     return (
@@ -22,8 +22,8 @@ const PlayButton = ({ setSortingOn, sortingOn, handlePlay, handleReset }) => {
             onClick={handleToggle}
             disabled={!sortCtx.sortSelection || !sortCtx.dataSelection}
         >
-            {!sortingOn && <FaPlay className={styles.button__play} />}
-            {sortingOn && <BiReset className={styles.button__reset} />}
+            {!sortCtx.sortingOn && <FaPlay className={styles.button__play} />}
+            {sortCtx.sortingOn && <BiReset className={styles.button__reset} />}
         </button>
     );
 };
