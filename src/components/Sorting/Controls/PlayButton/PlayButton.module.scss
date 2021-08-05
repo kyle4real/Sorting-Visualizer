@@ -1,6 +1,6 @@
 @import "../../../../styles/variables.scss";
 
-.play-button {
+.button {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -29,7 +29,7 @@
         margin-left: 3px;
         transition: color 0.3s ease;
     }
-    &__pause {
+    &__reset {
         color: inherit;
         font-size: 1.6rem;
         transition: color 0.3s ease;

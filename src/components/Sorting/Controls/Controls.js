@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Controls.module.scss";
 import PlayButton from "./PlayButton/PlayButton";
-import Button from "./../../UI/Button/Button";
 
-const Controls = ({ handlePlay, handlePause, sortingOn, setSortingOn }) => {
+const Controls = ({ handlePlay, handleReset, sortingOn, setSortingOn }) => {
     return (
         <div className={styles["controls-container"]}>
             <div className={styles["controls"]}>
                 <PlayButton
                     handlePlay={handlePlay}
-                    handlePause={handlePause}
+                    handleReset={handleReset}
                     sortingOn={sortingOn}
                     setSortingOn={setSortingOn}
                 />

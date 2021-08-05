@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import SortContext from "../../../../store/sort-context";
 import styles from "./PlayButton.module.scss";
-import { FaPlay, FaPause } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
+import { BiReset } from "react-icons/bi";
 
-const PlayButton = ({ setSortingOn, sortingOn, handlePlay, handlePause }) => {
+const PlayButton = ({ setSortingOn, sortingOn, handlePlay, handleReset }) => {
     const sortCtx = useContext(SortContext);
 
     const handleToggle = () => {
@@ -11,18 +12,18 @@ const PlayButton = ({ setSortingOn, sortingOn, handlePlay, handlePause }) => {
         if (!sortingOn) {
             handlePlay();
         } else {
-            handlePause();
+            handleReset();
         }
     };
 
     return (
         <button
-            className={styles["play-button"]}
+            className={styles.button}
             onClick={handleToggle}
             disabled={!sortCtx.sortSelection || !sortCtx.dataSelection}
         >
-            {!sortingOn && <FaPlay className={styles["play-button__play"]} />}
-            {sortingOn && <FaPause className={styles["play-button__pause"]} />}
+            {!sortingOn && <FaPlay className={styles.button__play} />}
+            {sortingOn && <BiReset className={styles.button__reset} />}
         </button>
     );
 };

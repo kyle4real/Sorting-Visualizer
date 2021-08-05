@@ -15,6 +15,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
     const sortCtx = useContext(SortContext);
     const [dataSet, setDataSet] = useState(() => randomDataSet());
     const [animations, setAnimations] = useState(null);
+    const [timers, setTimers] = useState(null);
 
     useEffect(() => {
         setDataSet(() => randomDataSet(sortCtx.dataAmount));
@@ -31,13 +32,17 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
 
     const handlePlay = () => {
         console.log(animations);
-        bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
+        const timerArr = bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
+        setTimers(timerArr);
     };
 
     const handleReset = () => {
+        for (let i = 0; i < timers.length; i++) {
+            clearInterval(timers[i]);
+        }
+        setTimers(null);
         refreshAnimate();
-        const dataSetCopy = [...dataSet];
-        setDataSet(dataSetCopy);
+        setDataSet(() => randomDataSet(sortCtx.dataAmount));
     };
 
     return (
@@ -47,7 +52,7 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
                 <Bars array={dataSet} />
                 <Controls
                     handlePlay={handlePlay}
-                    handlePause={handleReset}
+                    handleReset={handleReset}
                     sortingOn={sortingOn}
                     setSortingOn={setSortingOn}
                 />
