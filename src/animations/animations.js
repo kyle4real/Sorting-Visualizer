@@ -3,6 +3,7 @@ const timers = [];
 export const bubbleSortAnimate = (animations, speed, onFinish) => {
     if (animations === undefined) return;
     const dataBars = document.getElementsByClassName("data-bar");
+
     for (let i = 0; i < animations.length; i++) {
         const colorChange = i % 3 !== 1;
         if (colorChange) {
@@ -15,7 +16,7 @@ export const bubbleSortAnimate = (animations, speed, onFinish) => {
                 barTwoStyling.backgroundColor = color;
                 if (i === animations.length - 1) {
                     animateOnFinish();
-                    onFinish();
+                    // onFinish();
                 }
             }, i * speed);
             timers.push(timer);

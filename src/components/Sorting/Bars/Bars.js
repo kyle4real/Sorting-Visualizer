@@ -3,7 +3,7 @@ import SortContext from "../../../store/sort-context";
 import Bar from "./Bar/Bar";
 import styles from "./Bars.module.scss";
 
-const Bars = ({ array, groupA, groupB, groupC, groupD, sortedIndicies }) => {
+const Bars = ({ array }) => {
     const sortCtx = useContext(SortContext);
 
     return (
@@ -13,25 +13,13 @@ const Bars = ({ array, groupA, groupB, groupC, groupD, sortedIndicies }) => {
                     className={styles["bars"]}
                     style={{ gridTemplateColumns: `repeat(${sortCtx.dataAmount}, 1fr)` }}
                 >
-                    {array.map((num, i) => {
-                        let stateA = groupA.includes(i);
-                        let stateB = groupB.includes(i);
-                        let stateC = groupC.includes(i);
-                        let stateD = groupD.includes(i);
-                        let sorted = sortedIndicies.includes(i);
-                        return (
-                            <Bar
-                                key={`${i}_${num}`}
-                                height={num}
-                                opacity={sortCtx.dataSelection && sortCtx.sortSelection ? 1 : 0}
-                                stateA={stateA}
-                                stateB={stateB}
-                                stateC={stateC}
-                                stateD={stateD}
-                                sorted={sorted}
-                            />
-                        );
-                    })}
+                    {array.map((num, i) => (
+                        <Bar
+                            height={num}
+                            key={i}
+                            opacity={sortCtx.sortSelection && sortCtx.dataSelection ? 1 : 0}
+                        />
+                    ))}
                 </div>
             </div>
         </React.Fragment>

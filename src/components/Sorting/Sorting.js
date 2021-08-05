@@ -8,7 +8,8 @@ import { randomDataSet } from "../../helpers/generateDataSet";
 
 import SortContext from "../../store/sort-context";
 
-import BubbleSort from "./../../algs/BubbleSort";
+import bubbleSort from "./../../algorithms/bubbleSort";
+import { bubbleSortAnimate, refreshAnimate } from "../../animations/animations";
 
 const Sorting = ({ sortingOn, setSortingOn }) => {
     const sortCtx = useContext(SortContext);
@@ -21,149 +22,34 @@ const Sorting = ({ sortingOn, setSortingOn }) => {
 
     useEffect(() => {
         if (sortCtx.dataAmount && sortCtx.sortSelection && sortCtx.dataSelection) {
-            const animation = BubbleSort(dataSet);
+            const animation = bubbleSort(dataSet, dataSet.length);
+            console.log(animation);
             setAnimations(animation);
             console.log("animations created");
         }
     }, [sortCtx.dataAmount, sortCtx.sortSelection, sortCtx.dataSelection, dataSet]);
 
-    const [animation, setAnimation] = useState([]);
-    const [animationStep, setAnimationStep] = useState(-1);
-
-    const [origArray, setOrigArray] = useState([]);
-    const [array, setArray] = useState([]);
-    const [groupA, setGroupA] = useState([]);
-    const [groupB, setGroupB] = useState([]);
-    const [groupC, setGroupC] = useState([]);
-    const [groupD, setGroupD] = useState([]);
-    const [sortedIndicies, setSortedIndicies] = useState([]);
-
-    const [timeoutIds, setTimeoutIds] = useState([]);
-    const [speed, setSpeed] = useState(6);
-
-    useEffect(() => {
-        reset(dataSet);
-        setAnimation(animations);
-    }, [dataSet, animations]);
-
-    //  Actions
-
-    const reset = (array) => {
-        setArray(array);
-        setAnimation([]);
-        setAnimationStep(-1);
-        setGroupA([]);
-        setGroupB([]);
-        setGroupC([]);
-        setGroupD([]);
-        setSortedIndicies([]);
-        setOrigArray([...array]);
+    const handlePlay = () => {
+        console.log(animations);
+        bubbleSortAnimate(animations, 100);
     };
 
-    const clearTimeouts = () => {
-        timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
-        setTimeoutIds([]);
-    };
-
-    const changeVisualState = (visualState) => {
-        console.log(visualState);
-        setArray(visualState.array);
-        setGroupA(visualState.groupA);
-        setGroupB(visualState.groupB);
-        setGroupC(visualState.groupC);
-        setGroupD(visualState.groupD);
-        setSortedIndicies(visualState.sortedIndicies);
-    };
-
-    const run = (animation) => {
-        const timeoutIds = [];
-        const timer = 500 / speed;
-
-        // timeout for each animation item
-        animation.forEach((item, i) => {
-            let timeoutId = setTimeout(
-                (item) => {
-                    setAnimationStep((p) => p + 1);
-                    changeVisualState(item);
-                },
-                i * timer,
-                item
-            );
-
-            timeoutIds.push(timeoutId);
-        });
-        console.log("test");
-        // clear timeouts upon completion
-        let timeoutId = setTimeout(() => {
-            clearTimeouts();
-            onComplete();
-        }, animation.length * timer);
-        timeoutIds.push(timeoutId);
-
-        setTimeoutIds(timeoutIds);
-    };
-
-    const pause = () => {
-        clearTimeouts();
-    };
-
-    const continueAnimation = () => {
-        const newAnimation = animation.slice(animationStep);
-        run(newAnimation);
-    };
-
-    const stepForward = () => {
-        if (animationStep < animation.length - 1) {
-            const item = animation[animationStep + 1];
-            setAnimationStep((p) => p + 1);
-            changeVisualState(item);
-        }
-    };
-    const stepBackward = () => {
-        if (animationStep > 0) {
-            const item = animation[animationStep - 1];
-            setAnimationStep((p) => p - 1);
-            changeVisualState(item);
-        }
-    };
-
-    const adjustSpeed = (speed) => {
-        const playing = timeoutIds.length > 0;
-        pause();
-        setSpeed(speed);
-        if (playing) continueAnimation();
-    };
-
-    const onComplete = () => {
-        setSortingOn(false);
+    const handleReset = () => {
+        refreshAnimate();
+        const dataSetCopy = [...dataSet];
+        setDataSet(dataSetCopy);
     };
 
     return (
         <div className={styles["sorting-container"]}>
             <div className={`container ${styles["sorting"]}`}>
                 <SetupProgress />
-                <Bars
-                    array={array}
-                    groupA={groupA}
-                    groupB={groupB}
-                    groupC={groupC}
-                    groupD={groupD}
-                    sortedIndicies={sortedIndicies}
-                />
+                <Bars array={dataSet} />
                 <Controls
-                    setDataSet={setDataSet}
-                    newSet={randomDataSet}
-                    dataAmount={sortCtx.dataAmount}
+                    handlePlay={handlePlay}
+                    handlePause={handleReset}
                     sortingOn={sortingOn}
                     setSortingOn={setSortingOn}
-                    handleStepForward={stepForward}
-                    handleStepBackward={stepBackward}
-                    speed={speed}
-                    adjustSpeed={adjustSpeed}
-                    handlePlay={
-                        animationStep === -1 ? run.bind(null, animation) : continueAnimation
-                    }
-                    handlePause={pause}
                 />
             </div>
         </div>
