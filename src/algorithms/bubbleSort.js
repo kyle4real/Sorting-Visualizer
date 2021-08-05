@@ -1,4 +1,4 @@
-const bubbleSort = (currentSet, dataAmount) => {
+const bubbleSort = (currentSet) => {
     const animations = [];
     // SWAP HELPER
     const swap = (arr, inx1, inx2) => {
@@ -6,7 +6,7 @@ const bubbleSort = (currentSet, dataAmount) => {
     };
     // END SWAP HELPER
     const arr = [...currentSet];
-    for (let i = dataAmount; i > 0; i--) {
+    for (let i = currentSet.length; i > 0; i--) {
         for (let j = 0; j < i - 1; j++) {
             animations.push([j, j + 1]);
             if (arr[j] > arr[j + 1]) {

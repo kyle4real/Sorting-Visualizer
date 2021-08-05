@@ -9,7 +9,12 @@ import { randomDataSet } from "../../helpers/generateDataSet";
 import SortContext from "../../store/sort-context";
 
 import bubbleSort from "./../../algorithms/bubbleSort";
-import { bubbleSortAnimate, refreshAnimate } from "../../animations/animations";
+import {
+    bubbleSortAnimate,
+    refreshAnimate,
+    selectionSortAnimate,
+} from "../../animations/animations";
+import selectionSort from "../../algorithms/selectionSort";
 
 const Sorting = () => {
     const sortCtx = useContext(SortContext);
@@ -23,16 +28,24 @@ const Sorting = () => {
 
     useEffect(() => {
         if (sortCtx.dataAmount && sortCtx.sortSelection && sortCtx.dataSelection) {
-            const animation = bubbleSort(dataSet, dataSet.length);
+            let animation;
+            if (sortCtx.sortSelection === "Bubble Sort") {
+                animation = bubbleSort(dataSet);
+            } else if (sortCtx.sortSelection === "Selection Sort") {
+                animation = selectionSort(dataSet);
+            }
             console.log(animation);
             setAnimations(animation);
-            console.log("animations created");
         }
     }, [sortCtx.dataAmount, sortCtx.sortSelection, sortCtx.dataSelection, dataSet]);
 
     const handlePlay = () => {
-        console.log(animations);
-        const timerArr = bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
+        let timerArr;
+        if (sortCtx.sortSelection === "Bubble Sort") {
+            timerArr = bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
+        } else if (sortCtx.sortSelection === "Selection Sort") {
+            timerArr = selectionSortAnimate(animations, 100, null, sortCtx.dataAmount);
+        }
         setTimers(timerArr);
     };
 

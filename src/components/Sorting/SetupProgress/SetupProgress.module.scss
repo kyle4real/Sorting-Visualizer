@@ -10,19 +10,24 @@
 
     &__setup,
     &__titles {
-        padding: 0 6rem;
         width: 100%;
         height: 3rem;
         display: flex;
         align-items: center;
         color: $secondary;
+
+        @include breakpoint(md) {
+            padding: 0 6rem;
+        }
     }
     &__titles {
-        padding: 0 4rem;
         height: 1rem;
         justify-content: space-between;
         p {
             font-size: 0.9rem;
+            &:last-child {
+                text-align: right;
+            }
         }
     }
 }

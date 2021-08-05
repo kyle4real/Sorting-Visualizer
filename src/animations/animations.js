@@ -7,6 +7,8 @@ const BG_SWAPPED = "#1dc690";
 const BG_SORTED = "#ec1a1a";
 const BG_INITIAL = "#1a1416";
 
+export const selectionSortAnimate = (animations, speed, onFinish, amount) => {};
+
 export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
     if (animations === undefined) return;
     const dataBars = document.getElementsByClassName("data-bar");
@@ -36,10 +38,6 @@ export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
             timers.push(timer);
         } else {
             let timer;
-            // if (!animations[i].length) {
-            //     timer = setTimeout(() => {}, i * speed);
-            //     continue;
-            // }
             if (!animations[i].length) continue;
             const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = animations[i];
             const barOneStyling = dataBars[barOneInx].style;

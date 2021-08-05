@@ -3,8 +3,16 @@
 $containerHeight: calc(100vh - 7rem);
 
 .sorting__container {
-    height: $containerHeight;
+    height: calc(100vh - 10rem);
     background: $white;
+
+    @include breakpoint(sm) {
+        height: calc(100cv - 6rem);
+    }
+
+    @include breakpoint(lg) {
+        height: calc(100vh - 7rem);
+    }
 }
 
 .sorting {
