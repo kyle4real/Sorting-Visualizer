@@ -1,6 +1,7 @@
 const MAX_HEIGHT = 100;
 const timers = [];
 export const bubbleSortAnimate = (animations, speed, onFinish) => {
+    console.log(animations);
     if (animations === undefined) return;
     const dataBars = document.getElementsByClassName("data-bar");
 
@@ -21,6 +22,7 @@ export const bubbleSortAnimate = (animations, speed, onFinish) => {
             }, i * speed);
             timers.push(timer);
         } else {
+            console.log(animations[i]);
             if (!animations[i].length) continue;
             const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = animations[i];
             const barOneStyling = dataBars[barOneInx].style;
