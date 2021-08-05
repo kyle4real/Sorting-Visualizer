@@ -1,10 +1,15 @@
 const MAX_HEIGHT = 100;
 const timers = [];
+
+// bg colors
+const BG_CHECKING = "orange";
+const BG_SWAPPED = "#1dc690";
+const BG_SORTED = "#ec1a1a";
+const BG_INITIAL = "#1a1416";
+
 export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
-    console.log(animations);
     if (animations === undefined) return;
     const dataBars = document.getElementsByClassName("data-bar");
-
     let dataAmount = amount - 1;
     for (let i = 0; i < animations.length; i++) {
         // 0 !1 2 3 !4 5 6 !7 8
@@ -13,14 +18,14 @@ export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
             const [barOneInx, barTwoInx] = animations[i];
             const barOneStyling = dataBars[barOneInx].style;
             const barTwoStyling = dataBars[barTwoInx].style;
-            const color = i % 3 === 0 ? "orange" : "#278ab0";
+            const color = i % 3 === 0 ? BG_CHECKING : BG_INITIAL;
             // eslint-disable-next-line no-loop-func
             const timer = setTimeout(() => {
                 barOneStyling.backgroundColor = color;
                 barTwoStyling.backgroundColor = color;
                 // if fully sorted, turn red
                 if (i % 3 !== 0 && barTwoInx === dataAmount) {
-                    barTwoStyling.backgroundColor = "red";
+                    barTwoStyling.backgroundColor = BG_SORTED;
                     dataAmount--;
                 }
                 if (i === animations.length - 1) {
@@ -39,11 +44,12 @@ export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
             const [barOneInx, barOneHeight, barTwoInx, barTwoHeight] = animations[i];
             const barOneStyling = dataBars[barOneInx].style;
             const barTwoStyling = dataBars[barTwoInx].style;
+            const color = BG_SWAPPED;
             timer = setTimeout(() => {
                 barOneStyling.height = Math.round((barTwoHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
                 barTwoStyling.height = Math.round((barOneHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
-                barOneStyling.backgroundColor = "#1dc690";
-                barTwoStyling.backgroundColor = "#1dc690";
+                barOneStyling.backgroundColor = color;
+                barTwoStyling.backgroundColor = color;
                 if (i === animations.length - 1) console.log("done");
             }, i * speed);
             timers.push(timer);
@@ -55,11 +61,11 @@ export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
 const animateOnFinish = () => {
     const dataBars = document.getElementsByClassName("data-bar");
     for (let i = 0; i < dataBars.length; i++) {
-        dataBars[i].style.backgroundColor = "#1dc690";
+        dataBars[i].style.backgroundColor = BG_SWAPPED;
     }
     setTimeout(() => {
         for (let i = 0; i < dataBars.length; i++) {
-            dataBars[i].style.backgroundColor = "#278ab0";
+            dataBars[i].style.backgroundColor = BG_SORTED;
         }
     }, 500);
 };
@@ -67,6 +73,6 @@ const animateOnFinish = () => {
 export const refreshAnimate = () => {
     const dataBars = document.getElementsByClassName("data-bar");
     for (let i = 0; i < dataBars.length; i++) {
-        dataBars[i].style.backgroundColor = "#278ab0";
+        dataBars[i].style.backgroundColor = BG_INITIAL;
     }
 };

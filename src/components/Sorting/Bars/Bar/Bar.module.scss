@@ -3,19 +3,9 @@
 .bar {
     width: 100%;
     border-bottom: none;
-    background: $primary;
+    background: $secondary;
     // border: 1px solid $secondary;
     // border-top-right-radius: 4px;
     // border-top-left-radius: 4px;
     transition: opacity 0.8s ease 0.2s;
-
-    &__sorted {
-        background: $info;
-    }
-    &__stateA {
-        background: yellow;
-    }
-    &__stateB {
-        background: $secondary;
-    }
 }
