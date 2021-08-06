@@ -9,6 +9,7 @@ const Controls = ({ handlePlay, handleReset }) => {
         <div className={classes.controls__container}>
             <div className={classes.controls}>
                 <PlayButton handlePlay={handlePlay} handleReset={handleReset} />
+                <input className={classes.controls__range} type="range" />
             </div>
         </div>
     );

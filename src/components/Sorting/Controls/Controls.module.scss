@@ -14,4 +14,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &__range {
+        margin-left: $spacing-md;
+
+        -webkit-appearance: none;
+        width: 100px;
+        height: 15px;
+        background: $primaryDesaturated;
+        outline: none;
+        opacity: 0.7;
+    }
 }
