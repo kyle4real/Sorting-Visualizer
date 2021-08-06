@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import SortContext from "../../../store/sort-context";
 
 import classes from "./Controls.module.scss";
@@ -6,12 +6,13 @@ import classes from "./Controls.module.scss";
 import PlayButton from "./PlayButton/PlayButton";
 
 const Controls = ({ handlePlay, handleReset }) => {
+    const [range, setRange] = useState(50);
     const sortCtx = useContext(SortContext);
 
     const isDisabled = !sortCtx.sortSelection || !sortCtx.dataSelection;
 
-    const rangeNum = 50;
-    const tooltipPosition = `calc(${rangeNum}px - 10px)`;
+    // const rangeNum = 50;
+    const tooltipPosition = `calc(${range}px - 10px)`;
 
     return (
         <div className={classes.controls__container}>
@@ -33,6 +34,8 @@ const Controls = ({ handlePlay, handleReset }) => {
                         disabled={isDisabled}
                         min={1}
                         max={100}
+                        onChange={(e) => setRange(e.target.value)}
+                        value={range}
                     />
                 </div>
             </div>
