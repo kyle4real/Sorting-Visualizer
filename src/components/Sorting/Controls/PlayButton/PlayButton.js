@@ -6,7 +6,7 @@ import classes from "./PlayButton.module.scss";
 import { FaPlay } from "react-icons/fa";
 import { BiReset } from "react-icons/bi";
 
-const PlayButton = ({ handlePlay, handleReset }) => {
+const PlayButton = ({ handlePlay, handleReset, disabled }) => {
     const sortCtx = useContext(SortContext);
 
     const handleToggle = () => {
@@ -19,11 +19,7 @@ const PlayButton = ({ handlePlay, handleReset }) => {
     };
 
     return (
-        <button
-            className={classes.button}
-            onClick={handleToggle}
-            disabled={!sortCtx.sortSelection || !sortCtx.dataSelection}
-        >
+        <button className={classes.button} onClick={handleToggle} disabled={disabled}>
             {!sortCtx.sortingOn && <FaPlay className={classes.button__play} />}
             {sortCtx.sortingOn && <BiReset className={classes.button__reset} />}
         </button>

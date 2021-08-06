@@ -17,12 +17,41 @@
 
     &__range {
         margin-left: $spacing-md;
-
         -webkit-appearance: none;
         width: 100px;
         height: 15px;
-        background: $primaryDesaturated;
         outline: none;
-        opacity: 0.7;
+        opacity: 0.9;
+        border-radius: $borderRadius;
+        background: $primaryDesaturated;
+        -webkit-transition: 0.2s;
+        transition: background 0.2s;
+
+        &:hover {
+            background: $primary;
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        &:disabled {
+            border: 1px solid white;
+            background: $white;
+        }
     }
 }
