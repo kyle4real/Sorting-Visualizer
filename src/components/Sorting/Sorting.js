@@ -11,10 +11,12 @@ import SortContext from "../../store/sort-context";
 import bubbleSort from "./../../algorithms/bubbleSort";
 import {
     bubbleSortAnimate,
+    insertionSortAnimate,
     refreshAnimate,
     selectionSortAnimate,
 } from "../../animations/animations";
 import selectionSort from "../../algorithms/selectionSort";
+import insertionSort from "../../algorithms/insertionSort";
 
 // temp data set
 const tempData = [30, 60, 10, 40, 50, 20, 70, 5, 90, 100];
@@ -36,6 +38,8 @@ const Sorting = () => {
                 animation = bubbleSort(dataSet);
             } else if (sortCtx.sortSelection === "Selection Sort") {
                 animation = selectionSort(dataSet);
+            } else if (sortCtx.sortSelection === "Insertion Sort") {
+                animation = insertionSort(tempData);
             }
             console.log(animation);
             setAnimations(animation);
@@ -48,6 +52,8 @@ const Sorting = () => {
             timerArr = bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
         } else if (sortCtx.sortSelection === "Selection Sort") {
             timerArr = selectionSortAnimate(animations, 2, null, sortCtx.dataAmount);
+        } else if (sortCtx.sortSelection === "Insertion Sort") {
+            timerArr = insertionSortAnimate(animations, 1000, null, tempData.length);
         }
         setTimers(timerArr);
     };
@@ -65,7 +71,7 @@ const Sorting = () => {
         <div className={styles.sorting__container}>
             <div className={`container ${styles.sorting}`}>
                 <SetupProgress />
-                <Bars array={dataSet} />
+                <Bars array={tempData} />
                 <Controls handlePlay={handlePlay} handleReset={handleReset} />
             </div>
         </div>

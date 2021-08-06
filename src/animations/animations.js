@@ -7,6 +7,15 @@ const BG_SWAPPED = "#1dc690";
 const BG_SORTED = "#ec1a1a";
 const BG_INITIAL = "#1a1416";
 
+export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
+    // WRONG
+    let timer;
+    if (animations === undefined) return;
+    const dataBars = document.getElementsByClassName("data-bar");
+    for (let i = 0; i < animations.length; i++) {}
+    return timers;
+};
+
 export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
     if (animations === undefined) return;
     const dataBars = document.getElementsByClassName("data-bar");
