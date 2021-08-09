@@ -22,19 +22,20 @@
         position: relative;
         .tooltip {
             position: absolute;
-            width: 100%;
+            width: calc(100% - 15px);
             height: 14px;
-            // background: blue;
             top: -14px;
             left: 0;
-            right: 0;
 
-            &__num {
+            &__thumb {
                 font-size: 14px;
                 color: $secondary;
-                width: 20px;
+                width: 15px;
                 position: absolute;
                 letter-spacing: $letterSpacing;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
         .range {
@@ -60,6 +61,7 @@
                 background: white;
                 border-radius: 50%;
                 cursor: pointer;
+                position: relative;
             }
 
             .slider::-moz-range-thumb {
