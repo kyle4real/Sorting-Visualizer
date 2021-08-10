@@ -16,10 +16,10 @@ const insertionSort = (currentSet) => {
             arr[j + 1] = arr[j];
             animations.push(["rm swap", j, currentVal, j + 1, arr[j]]);
         }
-        if (arr[j + 1] !== currentVal) {
-            animations.push(["insert", j + 1, currentVal]);
-            arr[j + 1] = currentVal;
-        }
+        // if (arr[j + 1] !== currentVal) {
+        animations.push(["insert", i]);
+        arr[j + 1] = currentVal;
+        // }
     }
     console.log(arr);
     return animations;

@@ -4,11 +4,11 @@ $roboto: "Roboto Mono", monospace;
 
 /* color palette: https://www.canva.com/colors/color-palettes/northern-lights-3/ */
 // $primary: #278ab0;
-$primary: #ec1a1a;
+$primary: rgb(236, 26, 26);
 $primaryDesaturated: desaturate($primary, 20%);
 // $secondary: #1c4670;
-$secondary: #1a1416;
-$info: #1dc690;
+$secondary: rgb(26, 20, 22);
+$info: rgb(29, 198, 144);
 $white: #eaeae0;
 
 $completedNodeSize: 2rem;
@@ -16,6 +16,11 @@ $completedNodeSize: 2rem;
 $letterSpacing: 0.4px;
 $spacing-md: 16px;
 $borderRadius: 4px;
+
+// $h: rgb(255, 165, 0);
+// $e: rgb(29, 198, 144);
+// $l: rgb(236, 26, 26);
+// $ll: rgb(26, 20, 22);
 
 // breakpoints
 @mixin breakpoint($point) {

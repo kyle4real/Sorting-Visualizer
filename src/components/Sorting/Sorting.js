@@ -45,7 +45,7 @@ const Sorting = () => {
             } else if (sortCtx.sortSelection === "Selection Sort") {
                 animation = selectionSort(dataSet);
             } else if (sortCtx.sortSelection === "Insertion Sort") {
-                animation = insertionSort(tempData);
+                animation = insertionSort(dataSet);
             }
             console.log(animation);
             setAnimations(animation);
@@ -59,7 +59,7 @@ const Sorting = () => {
         } else if (sortCtx.sortSelection === "Selection Sort") {
             timerArr = selectionSortAnimate(animations, speed, null, sortCtx.dataAmount);
         } else if (sortCtx.sortSelection === "Insertion Sort") {
-            timerArr = insertionSortAnimate(animations, speed, null, tempData.length);
+            timerArr = insertionSortAnimate(animations, speed, null, sortCtx.dataAmount);
         }
         setTimers(timerArr);
     };
@@ -77,7 +77,7 @@ const Sorting = () => {
         <div className={styles.sorting__container}>
             <div className={`container ${styles.sorting}`}>
                 <SetupProgress />
-                <Bars array={tempData} />
+                <Bars array={dataSet} />
                 <Controls
                     handlePlay={handlePlay}
                     handleReset={handleReset}

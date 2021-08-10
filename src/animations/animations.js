@@ -2,10 +2,10 @@ const MAX_HEIGHT = 100;
 const timers = [];
 
 // bg colors
-const BG_CHECKING = "orange";
-const BG_SWAPPED = "#1dc690";
-const BG_SORTED = "#ec1a1a";
-const BG_INITIAL = "#1a1416";
+const BG_CHECKING = "rgb(255, 165, 0)";
+const BG_SWAPPED = "rgb(29, 198, 144)";
+const BG_SORTED = "rgb(236, 26, 26)";
+const BG_INITIAL = "rgb(26, 20, 22)";
 
 export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
     if (animations === undefined) return;
@@ -18,7 +18,6 @@ export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
             const barTwoStyling = dataBars[barTwoInx].style;
             const color = c[0] === "compare" ? BG_CHECKING : BG_INITIAL;
             let timer = setTimeout(() => {
-                console.log(color);
                 barOneStyling.backgroundColor = color;
                 barTwoStyling.backgroundColor = color;
             }, i * speed);
@@ -40,12 +39,14 @@ export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
             timers.push(timer);
         }
         if (c[0] === "insert") {
-            const [, barOneInx, barOneHeight] = c;
-            const barOneStyling = dataBars[barOneInx].style;
+            const [, barOneInx] = c;
             let timer = setTimeout(() => {
-                barOneStyling.backgroundColor = BG_SORTED;
-                for (let j = barOneInx + 1; j < amount; j++) {
-                    dataBars[j].style.backgroundColor = BG_INITIAL;
+                if (barOneInx === amount - 1) {
+                    animateOnFinish();
+                } else {
+                    for (let j = 0; j < barOneInx; j++) {
+                        dataBars[j].style.backgroundColor = BG_SORTED;
+                    }
                 }
             }, i * speed);
             timers.push(timer);
@@ -70,6 +71,9 @@ export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
                     dataBars[j].style.backgroundColor = BG_INITIAL;
                 }
                 currentIteration++;
+                if (barOneInx === amount - 1) {
+                    animateOnFinish();
+                }
             }, i * speed);
             timers.push(timer);
         } else if (c.length === 4 || c.length === 0) {
