@@ -10,4 +10,16 @@ export const randomDataSet = (dataAmount = 50) => {
     }
     return data;
 };
-export const nearlySortedDataSet = () => {};
+export const nearlySortedDataSet = (dataAmount = 50) => {
+    const sorted = randomDataSet(dataAmount).sort((a, b) => a - b);
+    for (let i = 0; i < Math.round(dataAmount * 0.2); i++) {
+        let inx1 = 0;
+        let inx2 = 0;
+        while (inx1 === inx2) {
+            inx1 = Math.floor(Math.random() * dataAmount);
+            inx2 = Math.floor(Math.random() * dataAmount);
+        }
+        [sorted[inx1], sorted[inx2]] = [sorted[inx2], sorted[inx1]];
+    }
+    return sorted;
+};

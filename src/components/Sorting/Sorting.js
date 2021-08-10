@@ -4,7 +4,7 @@ import Controls from "./Controls/Controls";
 import SetupProgress from "./SetupProgress/SetupProgress";
 import styles from "./Sorting.module.scss";
 
-import { randomDataSet } from "../../helpers/generateDataSet";
+import { nearlySortedDataSet, randomDataSet } from "../../helpers/generateDataSet";
 
 import SortContext from "../../store/sort-context";
 
@@ -31,8 +31,12 @@ const Sorting = () => {
     };
 
     useEffect(() => {
-        setDataSet(() => randomDataSet(sortCtx.dataAmount));
-    }, [sortCtx.dataAmount]);
+        if (sortCtx.dataSelection === "Random") {
+            setDataSet(() => randomDataSet(sortCtx.dataAmount));
+        } else {
+            setDataSet(() => nearlySortedDataSet(sortCtx.dataAmount));
+        }
+    }, [sortCtx.dataAmount, sortCtx.dataSelection]);
 
     useEffect(() => {
         if (sortCtx.dataAmount && sortCtx.sortSelection && sortCtx.dataSelection) {
@@ -67,7 +71,11 @@ const Sorting = () => {
         }
         setTimers(null);
         refreshAnimate();
-        setDataSet(() => randomDataSet(sortCtx.dataAmount));
+        if (sortCtx.dataSelection === "Random") {
+            setDataSet(() => randomDataSet(sortCtx.dataAmount));
+        } else {
+            setDataSet(() => nearlySortedDataSet(sortCtx.dataAmount));
+        }
     };
 
     return (
