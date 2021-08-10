@@ -77,7 +77,7 @@ const Sorting = () => {
         <div className={styles.sorting__container}>
             <div className={`container ${styles.sorting}`}>
                 <SetupProgress />
-                <Bars array={dataSet} />
+                <Bars array={tempData} />
                 <Controls
                     handlePlay={handlePlay}
                     handleReset={handleReset}

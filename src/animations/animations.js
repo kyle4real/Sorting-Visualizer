@@ -8,11 +8,49 @@ const BG_SORTED = "#ec1a1a";
 const BG_INITIAL = "#1a1416";
 
 export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
-    // WRONG
-    let timer;
     if (animations === undefined) return;
     const dataBars = document.getElementsByClassName("data-bar");
-    for (let i = 0; i < animations.length; i++) {}
+    for (let i = 0; i < animations.length; i++) {
+        const c = animations[i];
+        if (c[0] === "compare" || c[0] === "rm compare") {
+            const [, barOneInx, barTwoInx] = c;
+            const barOneStyling = dataBars[barOneInx].style;
+            const barTwoStyling = dataBars[barTwoInx].style;
+            const color = c[0] === "compare" ? BG_CHECKING : BG_INITIAL;
+            let timer = setTimeout(() => {
+                console.log(color);
+                barOneStyling.backgroundColor = color;
+                barTwoStyling.backgroundColor = color;
+            }, i * speed);
+            timers.push(timer);
+        }
+        if (c[0] === "swap" || c[0] === "rm swap") {
+            const [, barOneInx, barOneNewHeight, barTwoInx, barTwoNewHeight] = c;
+            const barOneStyling = dataBars[barOneInx].style;
+            const barTwoStyling = dataBars[barTwoInx].style;
+            const color = c[0] === "swap" ? BG_SWAPPED : BG_INITIAL;
+            let timer = setTimeout(() => {
+                barOneStyling.backgroundColor = color;
+                barTwoStyling.backgroundColor = color;
+                barOneStyling.height =
+                    Math.round((barOneNewHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
+                barTwoStyling.height =
+                    Math.round((barTwoNewHeight / MAX_HEIGHT) * MAX_HEIGHT) + "%";
+            }, i * speed);
+            timers.push(timer);
+        }
+        if (c[0] === "insert") {
+            const [, barOneInx, barOneHeight] = c;
+            const barOneStyling = dataBars[barOneInx].style;
+            let timer = setTimeout(() => {
+                barOneStyling.backgroundColor = BG_SORTED;
+                for (let j = barOneInx + 1; j < amount; j++) {
+                    dataBars[j].style.backgroundColor = BG_INITIAL;
+                }
+            }, i * speed);
+            timers.push(timer);
+        }
+    }
     return timers;
 };
 
