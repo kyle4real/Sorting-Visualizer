@@ -18,9 +18,6 @@ import {
 import selectionSort from "../../algorithms/selectionSort";
 import insertionSort from "../../algorithms/insertionSort";
 
-// temp data set
-const tempData = [30, 60, 10, 40, 50, 20, 70, 5, 90, 100];
-
 const Sorting = () => {
     const sortCtx = useContext(SortContext);
     const [dataSet, setDataSet] = useState(() => randomDataSet());

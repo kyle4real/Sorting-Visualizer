@@ -12,8 +12,6 @@ const Controls = ({ handlePlay, handleReset, speedChange }) => {
 
     const isDisabled = !sortCtx.sortSelection || !sortCtx.dataSelection;
 
-    // const rangeNum = 50;
-    // const tooltipPosition = `calc(${range}% - -4px)`;
     const tooltipPosition = `${range}%`;
 
     const handleRangeChange = (e) => {
@@ -48,7 +46,7 @@ const Controls = ({ handlePlay, handleReset, speedChange }) => {
                     <input
                         className={classes.range}
                         type="range"
-                        disabled={isDisabled}
+                        disabled={isDisabled || sortCtx.sortingOn}
                         min={0}
                         max={100}
                         onChange={(e) => handleRangeChange(e)}
