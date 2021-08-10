@@ -55,7 +55,7 @@ const Options = () => {
                             onChange={sortCtx.changeDataAmount}
                             value={sortCtx.dataAmount}
                         >
-                            <option value="50">50</option>
+                            <option value="500">50</option>
                             <option value="30">30</option>
                             <option value="10">10</option>
                         </select>

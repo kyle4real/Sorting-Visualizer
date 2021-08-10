@@ -26,6 +26,12 @@ const Sorting = () => {
     const [dataSet, setDataSet] = useState(() => randomDataSet());
     const [animations, setAnimations] = useState(null);
     const [timers, setTimers] = useState(null);
+    const [speed, setSpeed] = useState(201);
+
+    const speedChangeHandler = (num) => {
+        const newSpeed = 201 - 2 * num;
+        setSpeed(newSpeed);
+    };
 
     useEffect(() => {
         setDataSet(() => randomDataSet(sortCtx.dataAmount));
@@ -49,11 +55,11 @@ const Sorting = () => {
     const handlePlay = () => {
         let timerArr;
         if (sortCtx.sortSelection === "Bubble Sort") {
-            timerArr = bubbleSortAnimate(animations, 2, null, sortCtx.dataAmount);
+            timerArr = bubbleSortAnimate(animations, speed, null, sortCtx.dataAmount);
         } else if (sortCtx.sortSelection === "Selection Sort") {
-            timerArr = selectionSortAnimate(animations, 2, null, sortCtx.dataAmount);
+            timerArr = selectionSortAnimate(animations, speed, null, sortCtx.dataAmount);
         } else if (sortCtx.sortSelection === "Insertion Sort") {
-            timerArr = insertionSortAnimate(animations, 1000, null, tempData.length);
+            timerArr = insertionSortAnimate(animations, speed, null, tempData.length);
         }
         setTimers(timerArr);
     };
@@ -71,8 +77,12 @@ const Sorting = () => {
         <div className={styles.sorting__container}>
             <div className={`container ${styles.sorting}`}>
                 <SetupProgress />
-                <Bars array={tempData} />
-                <Controls handlePlay={handlePlay} handleReset={handleReset} />
+                <Bars array={dataSet} />
+                <Controls
+                    handlePlay={handlePlay}
+                    handleReset={handleReset}
+                    speedChange={speedChangeHandler}
+                />
             </div>
         </div>
     );

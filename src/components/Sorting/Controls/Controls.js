@@ -5,8 +5,8 @@ import classes from "./Controls.module.scss";
 
 import PlayButton from "./PlayButton/PlayButton";
 
-const Controls = ({ handlePlay, handleReset }) => {
-    const [range, setRange] = useState(50);
+const Controls = ({ handlePlay, handleReset, speedChange }) => {
+    const [range, setRange] = useState(0);
     const [tooltip, setToolTip] = useState(false);
     const sortCtx = useContext(SortContext);
 
@@ -15,6 +15,12 @@ const Controls = ({ handlePlay, handleReset }) => {
     // const rangeNum = 50;
     // const tooltipPosition = `calc(${range}% - -4px)`;
     const tooltipPosition = `${range}%`;
+
+    const handleRangeChange = (e) => {
+        const val = e.target.value;
+        setRange(val);
+        speedChange(val);
+    };
 
     const handleMouseDown = () => {
         setToolTip(true);
@@ -43,10 +49,9 @@ const Controls = ({ handlePlay, handleReset }) => {
                         className={classes.range}
                         type="range"
                         disabled={isDisabled}
-                        min={1}
-                        max={101}
-                        step={1}
-                        onChange={(e) => setRange(e.target.value)}
+                        min={0}
+                        max={100}
+                        onChange={(e) => handleRangeChange(e)}
                         value={range}
                         onMouseDown={handleMouseDown}
                         onMouseUp={handleMouseUp}
