@@ -7,9 +7,14 @@ const BG_SWAPPED = "rgb(29, 198, 144)";
 const BG_SORTED = "rgb(236, 26, 26)";
 const BG_INITIAL = "rgb(26, 20, 22)";
 
-export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
+export const insertionSortAnimate = (animations, speed, onFinish, amount, barsClassName) => {
     if (animations === undefined) return;
-    const dataBars = document.getElementsByClassName("data-bar");
+    let dataBars;
+    if (barsClassName) {
+        dataBars = document.getElementsByClassName(barsClassName);
+    } else {
+        dataBars = document.getElementsByClassName("data-bar");
+    }
     for (let i = 0; i < animations.length; i++) {
         const c = animations[i];
         if (c[0] === "compare" || c[0] === "rm compare") {
@@ -42,7 +47,10 @@ export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
             const [, barOneInx] = c;
             let timer = setTimeout(() => {
                 if (barOneInx === amount - 1) {
-                    animateOnFinish();
+                    animateOnFinish(barsClassName);
+                    if (onFinish) {
+                        onFinish();
+                    }
                 } else {
                     for (let j = 0; j < barOneInx; j++) {
                         dataBars[j].style.backgroundColor = BG_SORTED;
@@ -55,9 +63,14 @@ export const insertionSortAnimate = (animations, speed, onFinish, amount) => {
     return timers;
 };
 
-export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
+export const selectionSortAnimate = (animations, speed, onFinish, amount, barsClassName) => {
     if (animations === undefined) return;
-    const dataBars = document.getElementsByClassName("data-bar");
+    let dataBars;
+    if (barsClassName) {
+        dataBars = document.getElementsByClassName(barsClassName);
+    } else {
+        dataBars = document.getElementsByClassName("data-bar");
+    }
     let currentIteration = 0;
     for (let i = 0; i < animations.length; i++) {
         const c = animations[i];
@@ -72,7 +85,10 @@ export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
                 }
                 currentIteration++;
                 if (barOneInx === amount - 1) {
-                    animateOnFinish();
+                    animateOnFinish(barsClassName);
+                    if (onFinish) {
+                        onFinish();
+                    }
                 }
             }, i * speed);
             timers.push(timer);
@@ -104,9 +120,14 @@ export const selectionSortAnimate = (animations, speed, onFinish, amount) => {
     return timers;
 };
 
-export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
+export const bubbleSortAnimate = (animations, speed, onFinish, amount, barsClassName) => {
     if (animations === undefined) return;
-    const dataBars = document.getElementsByClassName("data-bar");
+    let dataBars;
+    if (barsClassName) {
+        dataBars = document.getElementsByClassName(barsClassName);
+    } else {
+        dataBars = document.getElementsByClassName("data-bar");
+    }
     let dataAmount = amount - 1;
     for (let i = 0; i < animations.length; i++) {
         // 0 !1 2 3 !4 5 6 !7 8
@@ -126,7 +147,10 @@ export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
                     dataAmount--;
                 }
                 if (i === animations.length - 1) {
-                    animateOnFinish();
+                    animateOnFinish(barsClassName);
+                    if (onFinish) {
+                        onFinish();
+                    }
                     // onFinish();
                 }
             }, i * speed);
@@ -151,8 +175,13 @@ export const bubbleSortAnimate = (animations, speed, onFinish, amount) => {
     return timers;
 };
 
-const animateOnFinish = () => {
-    const dataBars = document.getElementsByClassName("data-bar");
+const animateOnFinish = (barsClassName) => {
+    let dataBars;
+    if (barsClassName) {
+        dataBars = document.getElementsByClassName(barsClassName);
+    } else {
+        dataBars = document.getElementsByClassName("data-bar");
+    }
     for (let i = 0; i < dataBars.length; i++) {
         dataBars[i].style.backgroundColor = BG_SWAPPED;
     }
@@ -163,8 +192,13 @@ const animateOnFinish = () => {
     }, 500);
 };
 
-export const refreshAnimate = () => {
-    const dataBars = document.getElementsByClassName("data-bar");
+export const refreshAnimate = (barsClassName) => {
+    let dataBars;
+    if (barsClassName) {
+        dataBars = document.getElementsByClassName(barsClassName);
+    } else {
+        dataBars = document.getElementsByClassName("data-bar");
+    }
     for (let i = 0; i < dataBars.length; i++) {
         dataBars[i].style.backgroundColor = BG_INITIAL;
     }

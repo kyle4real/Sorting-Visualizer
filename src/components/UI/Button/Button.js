@@ -1,9 +1,9 @@
 import classes from "./Button.module.scss";
 
-const Button = ({ children, handleClick, isActive, className, disabled }) => {
+const Button = ({ children, onClick, isActive, className, disabled }) => {
     return (
         <button
-            onClick={handleClick}
+            onClick={onClick}
             className={`${className && classes[className]} ${classes.button} ${
                 isActive && classes.active
             }`}

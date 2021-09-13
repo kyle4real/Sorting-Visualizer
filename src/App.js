@@ -6,20 +6,19 @@ import Sorting from "./components/Sorting/Sorting";
 import SortProvider from "./store/SortProvider";
 
 function App() {
-  const [combineSort, setCombineSort] = useState(false);
+    const [compareSort, setCompareSort] = useState(false);
 
-  const combineSortHandler = () => {
-    setCombineSort((p) => !p);
-  };
+    const toggleCompareSortHandler = () => {
+        setCompareSort((p) => !p);
+    };
 
-  return (
-    <SortProvider>
-      <Header combineSort={combineSortHandler} />
-      <Options />
-      {combineSort && <Sorting />}
-      {!combineSort && <CompareSort />}
-    </SortProvider>
-  );
+    return (
+        <SortProvider>
+            <Header toggleCompareSort={toggleCompareSortHandler} />
+            {!compareSort && <Options />}
+            {compareSort ? <CompareSort /> : <Sorting />}
+        </SortProvider>
+    );
 }
 
 export default App;

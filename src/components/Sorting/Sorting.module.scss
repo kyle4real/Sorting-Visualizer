@@ -1,17 +1,15 @@
 @import "../../styles/variables.scss";
 
-$containerHeight: calc(100vh - 7rem);
-
 .sorting__container {
-    height: calc(100vh - 10rem);
+    min-height: calc(100vh - 10rem);
     background: $white;
 
     @include breakpoint(sm) {
-        height: calc(100cv - 6rem);
+        min-height: calc(100vh - 6rem);
     }
 
     @include breakpoint(lg) {
-        height: calc(100vh - 7rem);
+        min-height: calc(100vh - 7rem);
     }
 }
 

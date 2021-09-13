@@ -33,7 +33,7 @@ const Sorting = () => {
     useEffect(() => {
         if (sortCtx.dataSelection === "Random") {
             setDataSet(() => randomDataSet(sortCtx.dataAmount));
-        } else {
+        } else if (sortCtx.dataSelection === "Nearly Sorted") {
             setDataSet(() => nearlySortedDataSet(sortCtx.dataAmount));
         }
     }, [sortCtx.dataAmount, sortCtx.dataSelection]);
@@ -48,7 +48,6 @@ const Sorting = () => {
             } else if (sortCtx.sortSelection === "Insertion Sort") {
                 animation = insertionSort(dataSet);
             }
-            console.log(animation);
             setAnimations(animation);
         }
     }, [sortCtx.dataAmount, sortCtx.sortSelection, sortCtx.dataSelection, dataSet]);
@@ -82,12 +81,19 @@ const Sorting = () => {
         <div className={styles.sorting__container}>
             <div className={`container ${styles.sorting}`}>
                 <SetupProgress />
-                <Bars array={dataSet} />
-                <Controls
-                    handlePlay={handlePlay}
-                    handleReset={handleReset}
-                    speedChange={speedChangeHandler}
+                <Bars
+                    array={dataSet}
+                    barsOpacity={sortCtx.sortSelection && sortCtx.dataSelection ? 1 : 0}
                 />
+                <div className={styles.controls__container}>
+                    <Controls
+                        handlePlay={handlePlay}
+                        handleReset={handleReset}
+                        speedChange={speedChangeHandler}
+                        sortingOn={sortCtx.sortingOn}
+                        isDisabled={!sortCtx.sortSelection || !sortCtx.dataSelection}
+                    />
+                </div>
             </div>
         </div>
     );

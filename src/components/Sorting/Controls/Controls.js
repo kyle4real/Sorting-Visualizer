@@ -1,16 +1,12 @@
-import React, { useContext, useState } from "react";
-import SortContext from "../../../store/sort-context";
+import React, { useState } from "react";
 
 import classes from "./Controls.module.scss";
 
 import PlayButton from "./PlayButton/PlayButton";
 
-const Controls = ({ handlePlay, handleReset, speedChange }) => {
+const Controls = ({ handlePlay, handleReset, speedChange, sortingOn, isDisabled }) => {
     const [range, setRange] = useState(0);
     const [tooltip, setToolTip] = useState(false);
-    const sortCtx = useContext(SortContext);
-
-    const isDisabled = !sortCtx.sortSelection || !sortCtx.dataSelection;
 
     const tooltipPosition = `${range}%`;
 
@@ -46,7 +42,7 @@ const Controls = ({ handlePlay, handleReset, speedChange }) => {
                     <input
                         className={classes.range}
                         type="range"
-                        disabled={isDisabled || sortCtx.sortingOn}
+                        disabled={isDisabled || sortingOn}
                         min={0}
                         max={100}
                         onChange={(e) => handleRangeChange(e)}
