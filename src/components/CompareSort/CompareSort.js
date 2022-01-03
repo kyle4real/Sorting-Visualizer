@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import bubbleSort from "../../algorithms/bubbleSort";
 import insertionSort from "../../algorithms/insertionSort";
 import selectionSort from "../../algorithms/selectionSort";
@@ -11,7 +11,6 @@ import {
 import { nearlySortedDataSet, randomDataSet } from "../../helpers/generateDataSet";
 import Bars from "../Sorting/Bars/Bars";
 import Controls from "../Sorting/Controls/Controls";
-import Button from "../UI/Button/Button";
 
 import classes from "./CompareSort.module.scss";
 import SortOptions from "./SortOptions/SortOptions";
